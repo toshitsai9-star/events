@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
  * Lightweight IntersectionObserver hook for triggering scroll animations across all pages.
  * - Detects elements with '.reveal-init' or '[data-reveal]'
  * - Triggers '.revealed' class with hardware-accelerated transitions
- * - Unobserves elements once revealed (single execution, zero overhead)
+ * - Replays section/card reveals as they re-enter the viewport while scrolling
  * - Auto-initializes on route change
  * - Automatically falls back to fully visible if IntersectionObserver or reduced-motion is active
  */
@@ -14,9 +14,8 @@ export default function useScrollReveal() {
   const location = useLocation();
 
   useLayoutEffect(() => {
-    // Sections/cards join the reveal system automatically, but the CSS keeps
-    // them visible while waiting for the observer so missed intersections can
-    // never leave empty-looking areas in the page.
+    // Apply scroll reveals to each section and its feature cards. When an
+    // element leaves the viewport it is armed for a smooth reveal on re-entry.
     const directions = ['up', 'left', 'right'];
     document.querySelectorAll('main section').forEach((section, index) => {
       if (!section.classList.contains('reveal-init')) {
@@ -61,13 +60,14 @@ export default function useScrollReveal() {
             entry.target.classList.add(
               entry.target.classList.contains('motion-reveal') ? 'motion-revealed' : 'revealed'
             );
-            observer.unobserve(entry.target);
+          } else if (entry.target.classList.contains('motion-reveal')) {
+            entry.target.classList.remove('motion-revealed');
           }
         });
       },
       {
         root: null,
-        rootMargin: '0px 0px 160px 0px',
+        rootMargin: '0px 0px -8% 0px',
         threshold: 0,
       }
     );
