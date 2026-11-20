@@ -268,7 +268,7 @@ export default function LipSyncAvatar({
           ============================================================
         */}
         {showFallbackButton && !showEntryGate && !isEnded && (
-          <div className="absolute top-24 sm:top-28 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+          <div className="founder-sound-hint absolute top-24 sm:top-28 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
             <button
               type="button"
               onClick={(e) => {
@@ -295,7 +295,7 @@ export default function LipSyncAvatar({
           ============================================================
         */}
         {!showEntryGate && (soundState === 'playing-with-sound' || soundState === 'muted-by-user') && (
-          <div className="absolute top-6 right-28 sm:right-36 z-30 pointer-events-auto">
+          <div className="founder-sound-toggle absolute top-6 right-28 sm:right-36 z-30 pointer-events-auto">
             <button
               type="button"
               onClick={handleToggleSound}
@@ -315,14 +315,14 @@ export default function LipSyncAvatar({
                     <span className="w-0.5 h-3 bg-[#D6B879] rounded-full animate-[pulse_0.6s_ease-in-out_0.2s_infinite]" />
                     <span className="w-0.5 h-1.5 bg-[#D6B879] rounded-full animate-[pulse_0.6s_ease-in-out_0.4s_infinite]" />
                   </div>
-                  <span className="text-[10px] font-mono tracking-wider uppercase text-[#D6B879]">
+                  <span className="founder-sound-label text-[10px] font-mono tracking-wider uppercase text-[#D6B879]">
                     Voice On
                   </span>
                 </>
               ) : (
                 <>
                   <VolumeX className="w-3.5 h-3.5" />
-                  <span className="text-[10px] font-mono tracking-wider uppercase">
+                  <span className="founder-sound-label text-[10px] font-mono tracking-wider uppercase">
                     Muted
                   </span>
                 </>
