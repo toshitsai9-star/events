@@ -1509,3 +1509,13 @@ canvas {
   z-index: 3;
   pointer-events: auto;
 }
+
+
+/* Keep all six editorial panels legible when the desktop spread is opened. */
+.louver-stage--all-open .louver-blade__content { padding: clamp(0.65rem, 1.15vw, 1rem); }
+.louver-stage--all-open .louver-blade__number { font-size: clamp(2.7rem, 4.1vw, 4rem); }
+.louver-stage--all-open .louver-blade__icon--large { width: 2.55rem; height: 2.55rem; }
+.louver-stage--all-open .louver-blade__copy h3 { font-size: clamp(1.3rem, 1.65vw, 1.55rem); line-height: 1.05; overflow-wrap: anywhere; }
+.louver-stage--all-open .louver-blade__copy p { font-size: 0.9rem; line-height: 1.65; }
+.louver-stage--all-open .louver-blade__footer { font-size: 0.47rem; letter-spacing: 0.1em; }
+.louver-stage--all-open .louver-blade__signature-line { width: 1.3rem; flex: 0 0 auto; }
