@@ -160,7 +160,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
         <span
           className="hidden sm:block font-serif font-black uppercase whitespace-nowrap leading-none select-none text-center"
           style={{
-            fontFamily: '"Bodoni Moda", "Playfair Display", Didot, "Bodoni MT", serif',
+            fontFamily: '"DM Serif Display", Georgia, Didot, serif',
             fontSize: 'clamp(90px, 14.1vw, 280px)',
             letterSpacing: '-0.012em',
             background: 'linear-gradient(180deg, rgba(179, 170, 158, 0.92) 0%, rgba(200, 192, 181, 0.88) 50%, rgba(219, 212, 202, 0.85) 100%)',
@@ -180,7 +180,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
           <span
             className="font-serif font-black uppercase"
             style={{
-              fontFamily: '"Bodoni Moda", "Playfair Display", Didot, "Bodoni MT", serif',
+              fontFamily: '"DM Serif Display", Georgia, Didot, serif',
               fontSize: 'clamp(60px, 21vw, 95px)',
               letterSpacing: '-0.01em',
               background: 'linear-gradient(180deg, rgba(179, 170, 158, 0.92) 0%, rgba(200, 192, 181, 0.88) 50%, rgba(219, 212, 202, 0.85) 100%)',
@@ -194,7 +194,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
           <span
             className="font-serif font-black uppercase"
             style={{
-              fontFamily: '"Bodoni Moda", "Playfair Display", Didot, "Bodoni MT", serif',
+              fontFamily: '"DM Serif Display", Georgia, Didot, serif',
               fontSize: 'clamp(60px, 21vw, 95px)',
               letterSpacing: '-0.01em',
               background: 'linear-gradient(180deg, rgba(179, 170, 158, 0.92) 0%, rgba(200, 192, 181, 0.88) 50%, rgba(219, 212, 202, 0.85) 100%)',
@@ -211,7 +211,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
         <span
           className="font-serif uppercase whitespace-nowrap select-none text-center"
           style={{
-            fontFamily: '"Bodoni Moda", "Playfair Display", Didot, serif',
+            fontFamily: '"DM Serif Display", Georgia, Didot, serif',
             fontSize: 'clamp(11px, 1.4vw, 24px)',
             letterSpacing: '0.6em',
             color: 'rgba(207, 199, 188, 0.82)',
