@@ -85,7 +85,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
 
   return (
     <section
-      className="relative w-full h-screen min-h-[720px] max-h-[1080px] overflow-hidden flex items-center justify-center select-none"
+      className="event-hero-section relative w-full h-screen min-h-[720px] max-h-[1080px] overflow-hidden flex items-center justify-center select-none"
       style={{
         backgroundColor: '#F5F1E9',
         backgroundImage: `

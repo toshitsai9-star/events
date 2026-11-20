@@ -341,7 +341,7 @@ export default function LipSyncAvatar({
           ============================================================
         */}
         <div
-          className={`absolute bottom-[-24px] sm:bottom-[-20px] left-1/2 will-change-transform flex flex-col items-center justify-end h-[78vh] sm:h-[84vh] md:h-[88vh] lg:h-[90vh] max-h-[960px] w-auto pointer-events-auto transition-all duration-700 ${
+          className={`founder-avatar-stage absolute bottom-[-24px] sm:bottom-[-20px] left-1/2 will-change-transform flex flex-col items-center justify-end h-[78vh] sm:h-[84vh] md:h-[88vh] lg:h-[90vh] max-h-[960px] w-auto pointer-events-auto transition-all duration-700 ${
             showEntryGate ? 'opacity-0 pointer-events-none scale-98' : 'opacity-100 pointer-events-auto scale-100'
           }`}
           style={{
