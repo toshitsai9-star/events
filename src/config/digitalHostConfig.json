@@ -1,0 +1,17 @@
+{
+  "heading": "Meet Your Digital Host",
+  "subheading": "మీకు స్వాగతం చెప్పడానికి నేను ఇక్కడ ఉన్నాను.",
+  "founderName": "Anil Reddy",
+  "founderTitle": "Founder & Managing Director",
+  "script": "నమస్కారం! అందరికీ \n\"హాయ్ అండి, నా పేరు అనిల్ — ఫౌండర్ ఆఫ్ ఆది రెడ్డి ఈవెంట్స్ & ఫెసిలిటేటర్స్,\"",
+  "language": "Telugu",
+  "voiceGender": "Male",
+  "selectedVoiceId": "te-IN-MohanNeural",
+  "selectedVoiceName": "Mohan (Telugu - India, Professional Male)",
+  "portraitImage": "/founder-cutout.png",
+  "videoUrl": "/avatar/digital-host.mp4",
+  "fallbackVideoUrl": "/anil-reddy-intro.mp4",
+  "lastGeneratedAt": null,
+  "status": "ready"
+}
+
