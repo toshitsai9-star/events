@@ -93,7 +93,7 @@ export default function FloatingButtons() {
           1. FLOATING "PLAN YOUR EVENT" ENQUIRY PILL (BOTTOM-LEFT)
           ================================================== */}
       <div
-        className={`fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-500 ease-out ${
+        className={`floating-plan-action fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-500 ease-out ${
           isPastHero
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-4 pointer-events-none'
@@ -161,7 +161,7 @@ export default function FloatingButtons() {
           ================================================== */}
       <aside
         aria-label="Quick Actions"
-        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end space-y-3 transition-all duration-500 ease-out ${
+        className={`floating-quick-actions fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end space-y-3 transition-all duration-500 ease-out ${
           isPastHero
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-4 pointer-events-none'
