@@ -1087,3 +1087,133 @@
   }
 
 }
+
+/* Cross-device fit and touch-safe spacing. These rules preserve the existing
+   visual system while preventing the fixed hero and overlays from clipping on
+   short phones, browser-chrome viewports, and narrow tablet layouts. */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.cinema-modal {
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .event-hero-section {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: none;
+  }
+
+  .founder-avatar-stage {
+    height: min(72svh, 560px);
+    bottom: -12px;
+  }
+
+  .floating-plan-action,
+  .floating-quick-actions {
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .consultation-modal-backdrop {
+    padding: max(0.75rem, env(safe-area-inset-top, 0px)) 0.75rem
+      max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .consultation-modal {
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(1.35rem, 6vw, 2rem);
+    border-radius: 0.25rem 1.5rem 0.25rem 1.5rem;
+  }
+
+  .cinema-modal-backdrop {
+    align-items: center;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .cinema-modal {
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .folio-section {
+    padding-top: clamp(3.25rem, 9vw, 4.5rem);
+    padding-bottom: clamp(3.5rem, 10vw, 5rem);
+  }
+
+  .folio-page__topline {
+    gap: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .folio-page__copy {
+    padding: 1.5rem 0;
+  }
+
+  .folio-page__footer {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .folio-page__signature {
+    white-space: normal;
+    line-height: 1.5;
+  }
+
+  .film-gallery__deck--fan,
+  .film-gallery__deck--grid {
+    scroll-padding-inline: 0.75rem;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 390px) {
+  .event-hero-section > header {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .founder-avatar-stage {
+    height: min(68svh, 470px);
+  }
+
+  .folio-page {
+    padding-right: 1.15rem;
+    padding-left: 1.15rem;
+  }
+
+  .folio-page--under {
+    top: 205px;
+  }
+
+  .cinema-modal-backdrop {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 600px) {
+  .event-hero-section {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: none;
+  }
+
+  .founder-avatar-stage {
+    height: 64svh;
+  }
+}
