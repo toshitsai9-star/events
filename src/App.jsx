@@ -23,8 +23,8 @@ function AppContent() {
   useScrollReveal();
 
   return (
-    <div className="flex flex-col min-h-screen bg-ivory text-charcoal overflow-x-hidden selection:bg-crimson selection:text-white">
-      {/* Persistent Brand Header (Automatically hidden on first top screen of home, reveals on scroll) */}
+    <div className="flex flex-col min-h-screen bg-ivory text-charcoal overflow-x-clip selection:bg-crimson selection:text-white">
+      {/* Global sticky navigation stays available throughout every route and scroll position. */}
       <Navbar />
 
       {/* Dynamic Route Content */}
