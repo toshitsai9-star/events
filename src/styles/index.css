@@ -1503,3 +1503,9 @@ canvas {
     display: none;
   }
 }
+
+
+.louver-blade.is-open-all .louver-blade__trigger {
+  z-index: 3;
+  pointer-events: auto;
+}
