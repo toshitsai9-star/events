@@ -379,7 +379,7 @@
 }
 
 .louver-section__inner {
-  --louver-serif: 'Lora', 'Playfair Display', Georgia, serif;
+  --louver-serif: 'DM Serif Display', Georgia, serif;
   --louver-sans: 'Manrope', Inter, 'Segoe UI', sans-serif;
   width: min(100%, 1400px);
   margin: 0 auto;
@@ -934,7 +934,7 @@
   max-width: 24rem;
   margin: 0;
   color: #f7f4ee;
-  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-family: var(--font-heading, 'DM Serif Display', Georgia, serif);
   font-size: clamp(2.15rem, 6vw, 3.35rem);
   font-weight: 500;
   line-height: 1;
@@ -1029,7 +1029,7 @@
 }
 
 .folio-section__content {
-  --folio-heading: 'Lora', Georgia, serif;
+  --folio-heading: 'DM Serif Display', Georgia, serif;
   --folio-body: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
   position: relative;
   width: min(100%, 1080px);
@@ -1508,7 +1508,7 @@ canvas {
 }
 
 .louver-section__inner {
-  --louver-serif: 'Lora', 'Playfair Display', Georgia, serif;
+  --louver-serif: 'DM Serif Display', Georgia, serif;
   --louver-sans: 'Manrope', Inter, 'Segoe UI', sans-serif;
 }
 
