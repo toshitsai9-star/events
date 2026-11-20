@@ -1476,3 +1476,30 @@ canvas {
     height: 64svh;
   }
 }
+
+/* Keep the louvers aligned after the shared standard section base styles. */
+.standard-section.louver-section {
+  padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1rem, 3vw, 2.5rem);
+}
+
+.louver-section__inner {
+  --louver-serif: 'Bodoni Moda', 'Lora', Georgia, serif;
+}
+
+.louver-blade:nth-child(odd):not(.is-active):not(.is-open-all) {
+  transform: rotateY(-6deg) translateZ(-10px);
+}
+
+.louver-blade:nth-child(even):not(.is-active):not(.is-open-all) {
+  transform: rotateY(6deg) translateZ(-10px);
+}
+
+@media (max-width: 900px) {
+  .standard-section.louver-section {
+    padding: 4.5rem 1rem 5rem;
+  }
+
+  .louver-mode {
+    display: none;
+  }
+}
