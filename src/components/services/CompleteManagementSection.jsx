@@ -1,135 +1,167 @@
-import React from 'react';
-import SectionHeading from '../SectionHeading';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  CalendarCheck,
   Lightbulb,
-  Palette,
-  MapPin,
-  Layers,
-  Volume2,
-  Sparkles,
-  Calendar,
-  Users2,
-  HeartHandshake,
   ShieldCheck,
+  SlidersHorizontal,
+  Sparkles,
+  Users,
 } from 'lucide-react';
 
-/**
- * CompleteManagementSection
- * Demonstrates the 10 holistic management capabilities of Adi Reddy Events.
- * Highlights that full-service event management encompasses far more than decoration.
- */
+const pillars = [
+  {
+    icon: Lightbulb,
+    title: 'Creative Concepts',
+    description: 'Transforming original ideas into captivating visual and sensory atmospheres tailored uniquely to the personality and purpose of your occasion.',
+    finish: 'ivory',
+  },
+  {
+    icon: CalendarCheck,
+    title: 'Complete Event Planning',
+    description: 'Turnkey end-to-end management spanning spatial conception, schedule engineering, venue technical alignment, and guest concierge.',
+    finish: 'emerald',
+  },
+  {
+    icon: Users,
+    title: 'Professional Coordination',
+    description: 'A disciplined production team and seasoned on-ground crew ensuring every vendor, artist, technician, and timeline moves in perfect synchrony.',
+    finish: 'sand',
+  },
+  {
+    icon: Sparkles,
+    title: 'Attention to Detail',
+    description: 'From the exact color temperature of lighting cues to the placement of acoustic monitors and curated tablescapes, every detail receives meticulous scrutiny.',
+    finish: 'obsidian',
+  },
+  {
+    icon: SlidersHorizontal,
+    title: 'Customized Experiences',
+    description: 'We reject generic formulas. Every event itinerary, decor schematic, and sensory element is individually designed around your specific vision.',
+    finish: 'ivory',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Smooth Event Execution',
+    description: 'Unflappable, proactive live supervision behind the scenes, resolving friction before it surfaces so you remain fully present in your celebration.',
+    finish: 'emerald',
+  },
+];
+
+const number = (index) => String(index + 1).padStart(2, '0');
+
 export default function CompleteManagementSection() {
-  const capabilities = [
-    {
-      icon: Lightbulb,
-      title: 'Event Concept Development',
-      desc: 'Formulating the overarching artistic vision, storytelling angles, and strategic goals for your gathering.',
-    },
-    {
-      icon: Palette,
-      title: 'Theme and Design Planning',
-      desc: 'Developing harmonious color palettes, custom spatial schematics, and cohesive aesthetic motifs.',
-    },
-    {
-      icon: MapPin,
-      title: 'Venue Coordination',
-      desc: 'Site inspection, spatial layout planning, electrical load feasibility, and venue management alignment.',
-    },
-    {
-      icon: Layers,
-      title: 'Stage and Backdrop Design',
-      desc: 'Architectural staging, 3D structural backdrops, elevated podia, and ceremonial mandap fabrication.',
-    },
-    {
-      icon: Volume2,
-      title: 'Lighting and Sound Coordination',
-      desc: 'Acoustic calibration, intelligent beam lighting, ambient mood illumination, and stage monitor engineering.',
-    },
-    {
-      icon: Sparkles,
-      title: 'Decoration and Styling',
-      desc: 'Fresh floral installations, curated furniture rentals, bespoke tablescapes, and atmospheric accents.',
-    },
-    {
-      icon: Calendar,
-      title: 'Event Scheduling',
-      desc: 'Drafting minute-by-minute run-of-show itineraries, artist call times, and ritual timing synchronizations.',
-    },
-    {
-      icon: Users2,
-      title: 'Vendor Coordination',
-      desc: 'Sourcing, contracting, briefing, and supervising third-party caterers, technicians, and specialized artisans.',
-    },
-    {
-      icon: HeartHandshake,
-      title: 'Guest Experience Planning',
-      desc: 'Seamless guest registration, VIP hospitality protocols, valet parking management, and usher briefing.',
-    },
-    {
-      icon: ShieldCheck,
-      title: 'On-site Event Coordination',
-      desc: 'Calm, proactive live supervision behind the scenes, ensuring flawless cue-to-cue execution throughout the day.',
-    },
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [openAll, setOpenAll] = useState(false);
+  const stageRef = useRef(null);
+
+  const focusPillar = useCallback((index) => {
+    setActiveIndex(index);
+    setOpenAll(false);
+  }, []);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target?.tagName) || event.target?.isContentEditable) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        event.preventDefault();
+        focusPillar((activeIndex + 1) % pillars.length);
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        focusPillar((activeIndex - 1 + pillars.length) % pillars.length);
+      }
+    };
+
+    stage.addEventListener('keydown', onKeyDown);
+    return () => stage.removeEventListener('keydown', onKeyDown);
+  }, [activeIndex, focusPillar]);
 
   return (
-    <section className="py-20 md:py-32 bg-beige/40 border-b border-gold/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Heading */}
-        <SectionHeading
-          eyebrow="Turnkey Execution Capabilities"
-          title="From Planning to Execution, We Bring It All Together."
-          description="Professional event management involves far more than decoration. We manage all ten operational, creative, and technical layers to guarantee an effortless experience for you and your guests."
-          align="center"
-          className="mb-16 md:mb-20"
-        />
+    <section className="standard-section louver-section" aria-labelledby="standard-title">
+      <div className="louver-section__inner">
+        <header className="louver-heading">
+          <span className="louver-heading__eyebrow">The Adi Reddy Standard</span>
+          <h2 id="standard-title">Six principles. One seamless celebration.</h2>
+          <p>Creative direction and considered execution, shaped around your occasion.</p>
+        </header>
 
-        {/* 10 Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {capabilities.map((item, idx) => {
-            const Icon = item.icon;
+        <div className="louver-controls">
+          <p className="louver-active" aria-live="polite">
+            ACTIVE SHUTTER: <span>{openAll ? 'ALL' : number(activeIndex)}</span>
+          </p>
+          <button
+            type="button"
+            className={`louver-mode${openAll ? ' is-open' : ''}`}
+            onClick={() => setOpenAll((value) => !value)}
+            aria-pressed={openAll}
+          >
+            <span className="louver-mode__dot" aria-hidden="true" />
+            {openAll ? 'Sculptural Pleat Mode' : 'Open All Shutters'}
+          </button>
+        </div>
+
+        <div
+          className={`louver-stage${openAll ? ' louver-stage--all-open' : ''}`}
+          ref={stageRef}
+          tabIndex={0}
+          aria-label="The Adi Reddy Standard. Use arrow keys to move between shutters."
+        >
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon;
+            const active = activeIndex === index;
             return (
-              <div
-                key={idx}
-                className={`p-6 bg-ivory border border-gold/25 shadow-subtle flex flex-col justify-between transition-all duration-300 hover:border-gold hover:shadow-card hover:-translate-y-1 group reveal-init reveal-delay-${(idx % 5) * 100}`}
+              <article
+                key={pillar.title}
+                className={`louver-blade louver-blade--${pillar.finish}${active ? ' is-active' : ''}${openAll ? ' is-open-all' : ''}`}
+                style={{ '--blade-index': index }}
+                onMouseEnter={() => { if (!openAll) setActiveIndex(index); }}
               >
-                <div>
-                  <div className="w-10 h-10 bg-beige border border-gold/40 flex items-center justify-center mb-5 group-hover:bg-forest group-hover:border-forest transition-colors">
-                    <Icon className="w-4 h-4 text-gold group-hover:text-gold-light transition-colors" />
+                <button
+                  className="louver-blade__trigger"
+                  type="button"
+                  onFocus={() => { if (!openAll) setActiveIndex(index); }}
+                  onClick={() => focusPillar(index)}
+                  aria-expanded={openAll || active}
+                  aria-label={`${number(index)} ${pillar.title}${active ? ', active shutter' : ''}`}
+                >
+                  <span className="louver-blade__collapsed" aria-hidden="true">
+                    <span className="louver-blade__collapsed-top">
+                      <span className="louver-blade__collapsed-number">{number(index)}</span>
+                      <span className="louver-blade__icon"><Icon strokeWidth={1.5} /></span>
+                    </span>
+                    <span className="louver-blade__center-rule" />
+                    <span className="louver-blade__collapsed-title">{pillar.title}</span>
+                  </span>
+                  <span className="louver-blade__mobile-head" aria-hidden="true">
+                    <span className="louver-blade__mobile-index">{number(index)}</span>
+                    <span className="louver-blade__mobile-title">{pillar.title}</span>
+                    <span className="louver-blade__mobile-icon"><Icon strokeWidth={1.5} /></span>
+                    <span className="louver-blade__mobile-toggle">{openAll || active ? '−' : '+'}</span>
+                  </span>
+                </button>
+
+                <div className="louver-blade__content" aria-hidden={!openAll && !active}>
+                  <div className="louver-blade__content-top">
+                    <span className="louver-blade__number">{number(index)}<i>/</i></span>
+                    <span className="louver-blade__icon louver-blade__icon--large"><Icon strokeWidth={1.5} /></span>
                   </div>
-
-                  <span className="font-mono text-[10px] text-gold block mb-1.5">
-                    CAPABILITY {idx + 1 < 10 ? `0${idx + 1}` : idx + 1} //
-                  </span>
-
-                  <h3 className="font-serif text-lg text-charcoal mb-2 group-hover:text-forest transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="font-sans text-xs text-charcoal/70 leading-relaxed font-light">
-                    {item.desc}
-                  </p>
+                  <div className="louver-blade__copy">
+                    <h3>{pillar.title}</h3>
+                    <span className="louver-blade__accent" />
+                    <p>{pillar.description}</p>
+                  </div>
+                  <footer className="louver-blade__footer">
+                    <span>THE ADI REDDY STANDARD</span>
+                    <span className="louver-blade__signature-line" />
+                  </footer>
                 </div>
-
-                <div className="mt-5 pt-3 border-t border-gold/15 flex items-center justify-between">
-                  <span className="text-[9px] uppercase tracking-widest text-gold font-sans font-medium">
-                    Verified Scope
-                  </span>
-                  <div className="w-2.5 h-[1px] bg-gold/40" />
-                </div>
-              </div>
+              </article>
             );
           })}
         </div>
-
-        {/* Proposed Capability Note */}
-        <div className="mt-14 p-5 bg-ivory border border-gold/30 text-center max-w-3xl mx-auto">
-          <p className="font-sans text-xs text-charcoal/65 leading-relaxed">
-            <strong className="text-charcoal font-medium">Client Presentation Note:</strong> These ten capabilities represent the comprehensive proposed production capabilities for Adi Reddy Events. Every module can be customized or expanded based on your specific commission requirements.
-          </p>
-        </div>
-
       </div>
     </section>
   );
