@@ -52,7 +52,6 @@ const number = (index) => String(index + 1).padStart(2, '0');
 export default function CompleteManagementSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [openAll, setOpenAll] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const stageRef = useRef(null);
 
   const focusPillar = useCallback((index) => {
@@ -60,19 +59,17 @@ export default function CompleteManagementSection() {
     setOpenAll(false);
   }, []);
 
-  // Move through the shutters gently, while giving pointer and keyboard
-  // visitors control of the panel they are currently reading.
+  // Keep the shutter sequence moving automatically unless all panels are open
+  // or the visitor has requested reduced motion.
   useEffect(() => {
-    if (openAll || isPaused) return undefined;
-    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motionPreference.matches) return undefined;
+    if (openAll || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % pillars.length);
-    }, 6500);
+    }, 5200);
 
     return () => window.clearInterval(timer);
-  }, [isPaused, openAll]);
+  }, [openAll]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -122,12 +119,6 @@ export default function CompleteManagementSection() {
           className={`louver-stage${openAll ? ' louver-stage--all-open' : ''}`}
           ref={stageRef}
           tabIndex={0}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocusCapture={() => setIsPaused(true)}
-          onBlurCapture={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
-          }}
           aria-label="The Adi Reddy Standard. Use arrow keys to move between shutters."
         >
           {pillars.map((pillar, index) => {
