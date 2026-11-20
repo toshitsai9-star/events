@@ -10,17 +10,13 @@ import { NAV_LINKS } from '../utilities/constants';
  * smooth transparent-to-solid transition on scroll, active route indicators,
  * and responsive mobile navigation drawer.
  * 
- * Special Behavior:
- * On the landing page ('/'), it stays completely hidden during the first top screen (100vh)
- * so that only the brand image is displayed with zero other elements.
- * It smoothly reveals itself as the user scrolls into the second page and subsequent sections.
+ * The shared header remains sticky on every route. It tightens gently after
+ * scrolling so the navigation stays accessible without covering the content.
  */
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isVisibleOnHome, setIsVisibleOnHome] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   // Close mobile drawer on route change
   useEffect(() => {
@@ -32,27 +28,16 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 25);
-
-      if (isHomePage) {
-        // On home page, only show navbar once scrolled past 75% of viewport height (entering second page)
-        const threshold = window.innerHeight * 0.75;
-        setIsVisibleOnHome(scrollY >= threshold);
-      } else {
-        setIsVisibleOnHome(true);
-      }
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage]);
-
-  // On landing page, keep navbar visible at all times
-  // Scrolled styling activates when scrolled past 25px
+  }, [location.pathname]);
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-500 animate-fadeIn ${
+      className={`sticky top-0 z-[100] w-full transition-[background-color,box-shadow,padding,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] animate-fadeIn ${
         scrolled
           ? 'bg-forest/95 backdrop-blur-md border-b border-gold/25 py-3.5 shadow-floating'
           : 'bg-forest border-b border-gold/15 py-5'
