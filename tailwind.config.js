@@ -39,7 +39,7 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"DM Serif Display"', 'Georgia', '"Times New Roman"', 'serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
         sans: ['"Manrope"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       letterSpacing: {
