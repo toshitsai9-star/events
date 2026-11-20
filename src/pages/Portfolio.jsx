@@ -434,14 +434,14 @@ export default function Portfolio() {
       {/* 4. CINEMA MODAL LIGHTBOX */}
       {selectedVideo && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/95 backdrop-blur-lg animate-fadeIn"
+          className="cinema-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/95 backdrop-blur-lg animate-fadeIn"
           role="dialog"
           aria-modal="true"
         >
           {/* Backdrop click to close */}
           <div className="absolute inset-0" onClick={handleCloseVideo} />
 
-          <div className={`relative w-full ${
+          <div className={`cinema-modal relative w-full ${
             selectedVideo.aspect === 'vertical' ? 'max-w-xl' : 'max-w-5xl'
           } bg-[#121212] border border-gold/30 shadow-2xl overflow-hidden z-10 flex flex-col max-h-[95vh]`}>
             
