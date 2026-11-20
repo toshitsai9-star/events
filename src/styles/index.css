@@ -14,6 +14,7 @@
     background-color: var(--color-ivory);
     color: var(--color-charcoal);
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Clip horizontal overflow without creating a nested/secondary scroll root. */
@@ -323,30 +324,30 @@
 
 /* Shared, understated scroll reveal for all page sections and feature cards. */
 .motion-reveal {
-  opacity: 1;
-  translate: none;
-  scale: none;
+  opacity: 0.3;
+  translate: 0 28px;
+  scale: 0.99;
+  will-change: opacity, translate, scale;
   transition:
-    opacity 780ms cubic-bezier(0.22, 1, 0.36, 1),
-    translate 900ms cubic-bezier(0.22, 1, 0.36, 1),
-    scale 950ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 760ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--motion-delay, 0ms);
 }
 
 .motion-reveal[data-motion-direction="left"] {
-  --reveal-x: -12px;
+  translate: -18px 28px;
 }
 
 .motion-reveal[data-motion-direction="right"] {
-  --reveal-x: 12px;
+  translate: 18px 28px;
 }
 
 .motion-reveal.motion-revealed {
   opacity: 1;
   translate: none;
   scale: none;
-  animation: revealFromDirection 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: var(--motion-delay, 0ms);
+  will-change: auto;
 }
 
 @keyframes revealRise {
@@ -373,13 +374,21 @@
   }
 }
 
+/* Keep the founder voice control clear of the top-right inquiry link. */
+.founder-sound-toggle {
+  top: 5.8rem;
+  right: clamp(1rem, 5vw, 2.5rem);
+  left: auto;
+  transform: none;
+}
+
 /* Architectural louvers: interactive six-pillar standard section */
 .louver-section {
   padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1rem, 3vw, 2.5rem);
 }
 
 .louver-section__inner {
-  --louver-serif: 'DM Serif Display', Georgia, serif;
+  --louver-serif: 'Cormorant Garamond', Georgia, serif;
   --louver-sans: 'Manrope', Inter, 'Segoe UI', sans-serif;
   width: min(100%, 1400px);
   margin: 0 auto;
@@ -934,7 +943,7 @@
   max-width: 24rem;
   margin: 0;
   color: #f7f4ee;
-  font-family: var(--font-heading, 'DM Serif Display', Georgia, serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
   font-size: clamp(2.15rem, 6vw, 3.35rem);
   font-weight: 500;
   line-height: 1;
@@ -1029,7 +1038,7 @@
 }
 
 .folio-section__content {
-  --folio-heading: 'DM Serif Display', Georgia, serif;
+  --folio-heading: 'Cormorant Garamond', Georgia, serif;
   --folio-body: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
   position: relative;
   width: min(100%, 1080px);
@@ -1380,12 +1389,18 @@ canvas {
   }
 
   /* Keep the audio affordance clear of the inquiries link and the oversized wordmark. */
-  .founder-sound-toggle,
-  .founder-sound-hint {
-    top: calc(5.25rem + env(safe-area-inset-top, 0px));
-    right: 1rem;
+  .founder-sound-toggle {
+    top: calc(5.8rem + env(safe-area-inset-top, 0px));
+    right: max(1rem, env(safe-area-inset-right, 0px));
     left: auto;
     transform: none;
+  }
+
+  .founder-sound-hint {
+    top: calc(5.8rem + env(safe-area-inset-top, 0px));
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .founder-sound-toggle button {
@@ -1508,7 +1523,7 @@ canvas {
 }
 
 .louver-section__inner {
-  --louver-serif: 'DM Serif Display', Georgia, serif;
+  --louver-serif: 'Cormorant Garamond', Georgia, serif;
   --louver-sans: 'Manrope', Inter, 'Segoe UI', sans-serif;
 }
 
