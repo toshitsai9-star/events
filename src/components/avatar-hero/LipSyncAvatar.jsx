@@ -295,7 +295,7 @@ export default function LipSyncAvatar({
           ============================================================
         */}
         {!showEntryGate && (soundState === 'playing-with-sound' || soundState === 'muted-by-user') && (
-          <div className="founder-sound-toggle absolute top-6 right-28 sm:right-36 z-30 pointer-events-auto">
+          <div className="founder-sound-toggle absolute z-30 pointer-events-auto">
             <button
               type="button"
               onClick={handleToggleSound}
