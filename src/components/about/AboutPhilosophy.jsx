@@ -85,7 +85,7 @@ export default function AboutPhilosophy() {
                         {p.title}
                       </h3>
                     </div>
-                    <span className="font-mono text-sm text-gold font-medium">
+                    <span className="number-display text-sm text-gold font-medium">
                       {p.number}
                     </span>
                   </div>
