@@ -1,0 +1,108 @@
+/* Contact page only: editorial typography and restrained reveal motion */
+.gallery-contact-page {
+  --gc-serif: 'Cormorant Garamond', Georgia, serif;
+  --gc-sans: 'Plus Jakarta Sans', Inter, sans-serif;
+  overflow: hidden;
+  font-family: var(--gc-sans);
+}
+
+.gallery-contact-page h1,
+.gallery-contact-page h2,
+.gallery-contact-page h3,
+.gallery-contact-page .font-serif { font-family: var(--gc-serif); }
+.gallery-contact-page p,
+.gallery-contact-page label,
+.gallery-contact-page input,
+.gallery-contact-page select,
+.gallery-contact-page textarea,
+.gallery-contact-page button,
+.gallery-contact-page a { font-family: var(--gc-sans); }
+.gallery-contact-page section { scroll-margin-top: 6rem; }
+.gallery-contact-page .motion-reveal {
+  opacity: .24;
+  translate: 0 22px;
+  scale: .995;
+  transition: opacity .72s cubic-bezier(.22,1,.36,1), translate .78s cubic-bezier(.22,1,.36,1), scale .78s cubic-bezier(.22,1,.36,1);
+}
+.gallery-contact-page .motion-reveal.motion-revealed { opacity: 1; translate: none; scale: none; }
+
+.gc-hero { isolation: isolate; }
+.gc-hero__grid {
+  position: absolute; inset: 0; z-index: -1; opacity: .42; pointer-events: none;
+  background-image: linear-gradient(90deg, transparent calc(25% - 1px), rgba(181,158,120,.18) 25%, transparent calc(25% + 1px)), linear-gradient(90deg, transparent calc(75% - 1px), rgba(181,158,120,.18) 75%, transparent calc(75% + 1px));
+}
+.gc-hero__breadcrumb { color: rgba(24,21,18,.57); font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.gc-hero__breadcrumb a { color: inherit; text-decoration: none; transition: color .2s; }
+.gc-hero__breadcrumb a:hover { color: #9b1b1b; }
+.gc-hero__breadcrumb svg { width: 13px; height: 13px; color: #b59e78; }
+.gc-hero__breadcrumb span { color: #9b1b1b; }
+.gc-hero__content > * { animation: gc-rise .82s cubic-bezier(.22,1,.36,1) both; }
+.gc-hero__content > :nth-child(1) { animation-delay: 60ms; }
+.gc-hero__content > :nth-child(2) { animation-delay: 140ms; }
+.gc-hero__content > :nth-child(3) { animation-delay: 240ms; }
+.gc-hero__content > :nth-child(4) { animation-delay: 340ms; }
+.gc-hero__content > :nth-child(5) { animation-delay: 420ms; }
+.gc-hero__eyebrow {
+  display: inline-flex; align-items: center; gap: .65rem; padding: .55rem .8rem;
+  border: 1px solid rgba(181,158,120,.48); background: rgba(232,224,210,.4); color: #876d43;
+  font-size: .64rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+}
+.gc-hero__eyebrow svg { width: 14px; height: 14px; color: #9b1b1b; }
+.gc-hero h1 { max-width: 900px; margin: 1.65rem 0 1.1rem; color: #181512; font-size: clamp(3rem,7.2vw,6.65rem); font-weight: 500; line-height: .91; letter-spacing: -.045em; }
+.gc-hero h1 em { display: block; color: #0e231c; font-weight: 400; }
+.gc-hero__content > p { max-width: 610px; margin: 1.4rem 0 1.7rem; color: #625b53; font-size: clamp(.96rem,1.4vw,1.12rem); line-height: 1.8; }
+.gc-hero__action {
+  display: inline-flex; min-height: 48px; align-items: center; gap: 2.2rem; padding: .95rem 1.15rem;
+  border: 1px solid #9b1b1b; background: #9b1b1b; color: white; font-size: .68rem; font-weight: 700;
+  letter-spacing: .13em; text-decoration: none; text-transform: uppercase;
+  transition: background .25s, transform .25s, box-shadow .25s;
+}
+.gc-hero__action:hover { transform: translateY(-3px); background: #7f141b; box-shadow: 0 12px 28px rgba(155,27,27,.18); }
+.gc-hero__action svg { width: 17px; height: 17px; transition: transform .25s; }
+.gc-hero__action:hover svg { transform: translate(3px,3px); }
+.gc-hero__notes {
+  display: flex; align-items: center; gap: 1.4rem; margin-top: 2.2rem; padding-top: 1.15rem;
+  border-top: 1px solid rgba(181,158,120,.3); color: #766e63; font-size: .61rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+.gc-hero__notes b { margin-right: .35rem; color: #b59e78; font-family: var(--gc-serif); font-size: 1.2rem; font-weight: 500; }
+.gc-hero__notes i { width: 1px; height: 20px; background: rgba(181,158,120,.45); }
+
+.gallery-contact-page #contact-enquiry { padding-top: clamp(3.5rem,7vw,6rem); padding-bottom: clamp(3.5rem,7vw,6rem); }
+.gallery-contact-page #contact-enquiry .grid { min-width: 0; }
+.gallery-contact-page #contact-enquiry input,
+.gallery-contact-page #contact-enquiry select,
+.gallery-contact-page #contact-enquiry textarea { min-width: 0; max-width: 100%; font-size: 16px; }
+.gallery-contact-page #contact-enquiry input:focus,
+.gallery-contact-page #contact-enquiry select:focus,
+.gallery-contact-page #contact-enquiry textarea:focus { box-shadow: 0 0 0 3px rgba(181,158,120,.18); }
+.gallery-contact-page #contact-enquiry button,
+.gallery-contact-page #contact-enquiry a { min-height: 44px; }
+.gallery-contact-page .gc-hero__action:focus-visible,
+.gallery-contact-page a:focus-visible,
+.gallery-contact-page button:focus-visible,
+.gallery-contact-page input:focus-visible,
+.gallery-contact-page select:focus-visible,
+.gallery-contact-page textarea:focus-visible { outline: 2px solid #9b1b1b; outline-offset: 3px; }
+
+@keyframes gc-rise { from { opacity: 0; transform: translate3d(0,20px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+
+@media (max-width: 640px) {
+  .gc-hero .max-w-7xl { padding-top: 2rem; padding-bottom: 3.2rem; }
+  .gc-hero__breadcrumb { margin-bottom: 2.5rem; }
+  .gc-hero h1 { font-size: clamp(2.75rem,13vw,4.25rem); line-height: .96; }
+  .gc-hero__content > p { font-size: .94rem; line-height: 1.75; }
+  .gc-hero__notes { gap: .8rem; font-size: .53rem; letter-spacing: .1em; }
+  .gallery-contact-page #contact-enquiry .max-w-7xl { padding-right: 1rem; padding-left: 1rem; }
+  .gallery-contact-page #contact-enquiry .lg\:col-span-5,
+  .gallery-contact-page #contact-enquiry .lg\:col-span-7 { padding: 1.1rem; }
+  .gallery-contact-page #contact-enquiry .grid.grid-cols-1.sm\:grid-cols-2 { grid-template-columns: minmax(0,1fr); gap: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-contact-page .gc-hero__content > *,
+  .gallery-contact-page .motion-reveal,
+  .gallery-contact-page .gc-hero__action,
+  .gallery-contact-page .gc-hero__action svg { animation: none !important; transition: none !important; opacity: 1; transform: none; translate: none; scale: none; }
+}
+
