@@ -170,7 +170,7 @@ export default function SpecialtiesSection() {
                 <div className="absolute top-4 left-4 bg-forest/90 backdrop-blur-xs px-3 py-1 border border-gold/30 text-[10px] uppercase tracking-[0.2em] text-ivory font-sans">
                   {item.tag}
                 </div>
-                <div className="absolute top-4 right-4 bg-ivory/95 px-3 py-1 font-mono text-xs text-charcoal font-medium border border-gold/30">
+                <div className="absolute top-4 right-4 bg-ivory/95 px-3 py-1 number-display text-xs text-charcoal font-medium border border-gold/30">
                   {item.number}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
