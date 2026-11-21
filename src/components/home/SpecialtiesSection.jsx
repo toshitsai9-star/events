@@ -23,7 +23,7 @@ export default function SpecialtiesSection() {
         'Wedding stage decoration',
         'Floral & venue decoration',
       ],
-      image: 'https://images.unsplash.com/photo-1769812344142-8b0c2b63e18b?auto=format&fit=crop&w=1000&q=80',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80',
       tag: 'Signature Showcase',
     },
     {
