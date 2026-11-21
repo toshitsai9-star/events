@@ -1584,3 +1584,19 @@ canvas {
     display: none;
   }
 }
+
+
+/* Crisp, balanced geometric numerals for visual indices throughout the site. */
+.number-display,
+.event-dossier__folio,
+.folio-plate__number,
+.louver-blade__collapsed-number,
+.louver-blade__number,
+.louver-blade__mobile-index,
+.film-card__index {
+  font-family: var(--font-index) !important;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
