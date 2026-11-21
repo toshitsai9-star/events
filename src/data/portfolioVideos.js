@@ -60,8 +60,8 @@ export const PORTFOLIO_VIDEOS = [
     tag: 'Housewarming Decor',
     location: 'Hyderabad',
     duration: '1:27',
-    videoUrl: '/videos/optimized/housewarming-720p.mp4',
-    fallbackUrl: '/videos/adi-reddy-house-warming.mp4',
+    // Use the tracked source clip here; the optimized copy is not in the repo yet.
+    videoUrl: '/videos/adi-reddy-house-warming.mp4',
     posterUrl: '/videos/optimized/housewarming-poster-720.jpg',
     description: 'A look at the decorated ceremony backdrop and traditional details shown in this housewarming film.',
     highlights: ['Housewarming ceremony', 'Traditional backdrop', 'Event décor'],

@@ -11,11 +11,9 @@ import WebGLAvatarMatte from './WebGLAvatarMatte';
  * 1. Immediate attempt with sound: On mount, set muted=false, volume=1, call play().
  *    If it resolves, voice is playing; hide pill, skip entry gate, show small sound toggle.
  *    If it rejects (NotAllowedError), proceed to Step 2.
- * 2. Muted fallback that keeps visual alive: Set muted=true, play() silently, mark state="sound-blocked".
- * 3. First-gesture unlock anywhere: Listen once (capture, passive) on window for pointerdown, touchend, click, keydown.
- *    On first gesture: restart video from currentTime=0, set muted=false, volume=1, call play(),
- *    resume AudioContext, hide pill, show sound toggle.
- * 4. Softer hint pill: "Tap anywhere to hear the founder" with animated sound-wave icon.
+ * 2. If browser autoplay policy blocks sound, keep the video playing muted.
+ * 3. Keep one explicit sound control in the top-right; never unmute on unrelated page clicks.
+ * 4. Some browsers require the visitor to tap the sound control before audio can start.
  * 5. Optional Entry Gate (ENTRY_GATE, default true): Luxury welcome overlay in warm cream/serif style
  *    with "Enter Experience" and "Enter without sound". Skipped if Step 1 succeeds or if previously entered.
  */
@@ -34,19 +32,20 @@ export default function LipSyncAvatar({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
   const [showEntryGate, setShowEntryGate] = useState(false);
-  const [showFallbackButton, setShowFallbackButton] = useState(false);
   const [hasFirstFramePlayed, setHasFirstFramePlayed] = useState(false);
 
   const mediaRef = useRef(null);
   const hasAttemptedAutoplayRef = useRef(false);
 
-  // Core unlock function: sets muted=false, volume=1, restarts from 0, and plays
-  const unlockWithSound = useCallback((fromBeginning = true) => {
+  // Start or unmute from the current point; a sound-control click must not restart the video.
+  const unlockWithSound = useCallback((fromBeginning = false) => {
     const video = mediaRef.current;
     if (!video) return;
 
-    if (fromBeginning) {
+    // Starting playback after the clip has ended should replay from frame one.
+    if (fromBeginning || video.ended || (Number.isFinite(video.duration) && video.currentTime >= video.duration)) {
       video.currentTime = 0;
+      setIsEnded(false);
     }
     video.muted = false;
     video.volume = 1.0;
@@ -65,12 +64,12 @@ export default function LipSyncAvatar({
       // Ignore
     }
 
-    video.play().then(() => {
+    Promise.resolve(video.play()).then(() => {
       setIsPlaying(true);
-      setShowFallbackButton(false);
-    }).catch((err) => {
-      console.warn('Playback error after unlock:', err);
-      setShowFallbackButton(true);
+    }).catch(() => {
+      video.muted = true;
+      setIsMuted(true);
+      setSoundState('sound-blocked');
     });
   }, []);
 
@@ -82,65 +81,45 @@ export default function LipSyncAvatar({
     const video = mediaRef.current;
     if (!video) return;
 
-    // 1. On load, immediately try to play the founder video with sound:
-    video.currentTime = 0;
-    video.volume = 1.0;
-    video.muted = false;
+    const startFromBeginning = () => {
+      video.currentTime = 0;
+      video.volume = 1.0;
+      video.muted = false;
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise
+      Promise.resolve(video.play())
         .then(() => {
-          // 2. If play() RESOLVES (browser trusts the site, user enabled sound, or high MEI):
-          // Skip the welcome screen completely, play the voice from start, and show the "VOICE ON" control. No click needed.
           setIsPlaying(true);
           setIsMuted(false);
           setSoundState('playing-with-sound');
           setShowEntryGate(false);
-          setShowFallbackButton(false);
         })
-        .catch(() => {
-          // 3. If play() REJECTS (NotAllowedError):
-          // Show the welcome screen again, even if the visitor entered earlier in this session.
-          // Meanwhile keep the founder video running muted and blurred behind the overlay.
+        .catch(async () => {
+          // Browsers may block audible autoplay. Keep the original clip playing
+          // silently and let the top-right control request sound on a tap.
+          video.currentTime = 0;
           video.muted = true;
-          video.play().then(() => {
-            setIsPlaying(true);
-          }).catch(() => {});
-
           setIsMuted(true);
           setSoundState('sound-blocked');
-          if (entryGateEnabled) {
-            setShowEntryGate(true);
-          } else {
-            setShowFallbackButton(true);
+          try {
+            await video.play();
+            setIsPlaying(true);
+          } catch {
+            setIsPlaying(false);
           }
+          if (entryGateEnabled) setShowEntryGate(true);
         });
-    }
+    };
+
+    startFromBeginning();
+
+    // A page restored from the browser's back/forward cache may not remount React.
+    // Restart it from frame one just like a fresh page load.
+    const handlePageShow = (event) => {
+      if (event.persisted) startFromBeginning();
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
   }, [entryGateEnabled]);
-
-  // STEP 3: FIRST-GESTURE UNLOCK ANYWHERE (ACTIVE WHILE SOUND-BLOCKED)
-  useEffect(() => {
-    if (soundState !== 'sound-blocked' || showEntryGate) return;
-
-    // Listen once (capture phase, passive) on window for pointerdown, touchend, click, keydown
-    const handleFirstGesture = () => {
-      unlockWithSound(true);
-      cleanup();
-    };
-
-    const cleanup = () => {
-      ['pointerdown', 'touchend', 'click', 'keydown'].forEach((type) => {
-        window.removeEventListener(type, handleFirstGesture, true);
-      });
-    };
-
-    ['pointerdown', 'touchend', 'click', 'keydown'].forEach((type) => {
-      window.addEventListener(type, handleFirstGesture, { capture: true, passive: true });
-    });
-
-    return cleanup;
-  }, [soundState, showEntryGate, unlockWithSound]);
 
   // SCROLL VISIBILITY MANAGEMENT
   useEffect(() => {
@@ -167,8 +146,16 @@ export default function LipSyncAvatar({
       video.volume = 1.0;
       setIsMuted(false);
       setSoundState('playing-with-sound');
-      if (video.paused && !isEnded) {
-        video.play().then(() => setIsPlaying(true)).catch(() => {});
+      if (video.paused) {
+        if (video.ended || (Number.isFinite(video.duration) && video.currentTime >= video.duration)) {
+          video.currentTime = 0;
+          setIsEnded(false);
+        }
+        Promise.resolve(video.play()).then(() => setIsPlaying(true)).catch(() => {
+          video.muted = true;
+          setIsMuted(true);
+          setSoundState('sound-blocked');
+        });
       }
     } else {
       // Mute
@@ -206,11 +193,11 @@ export default function LipSyncAvatar({
       playPromise
         .then(() => {
           setIsPlaying(true);
-          setShowFallbackButton(false);
         })
-        .catch((err) => {
-          console.error('Play error after Enter:', err);
-          setShowFallbackButton(true);
+        .catch(() => {
+          video.muted = true;
+          setIsMuted(true);
+          setSoundState('sound-blocked');
         });
     }
   };
@@ -263,49 +250,28 @@ export default function LipSyncAvatar({
 
         {/* 
           ============================================================
-          FALLBACK BUTTON: "TAP TO HEAR THE FOUNDER"
-          Only shown if "Enter Experience" play() rejects or entry gate is disabled.
-          ============================================================
-        */}
-        {showFallbackButton && !showEntryGate && !isEnded && (
-          <div className="founder-sound-hint absolute top-24 sm:top-28 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                unlockWithSound(true);
-              }}
-              className="group flex items-center space-x-3 px-5 py-2.5 rounded-full bg-[#171717] hover:bg-[#222222] text-white shadow-xl border border-[#D6B879]/40 hover:border-[#D6B879] transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
-              title="Tap to hear the founder"
-            >
-              <Volume2 className="w-4 h-4 text-[#D6B879] animate-pulse" />
-              <span className="text-xs font-sans font-semibold tracking-wider uppercase text-white/95">
-                Tap to hear the founder
-              </span>
-            </button>
-          </div>
-        )}
-
-        {/* 
-          ============================================================
           ELEGANT SOUND TOGGLE BUTTON (MUTE / UNMUTE)
           Discreet luxury sound controller in the top right corner.
           Displays active sound waves when unmuted.
-          Visible ONLY when sound is unlocked or user manually muted (never simultaneous with fallback pill).
+          Always visible so blocked autoplay can be enabled with one intentional tap.
           ============================================================
         */}
-        {!showEntryGate && (soundState === 'playing-with-sound' || soundState === 'muted-by-user') && (
+        {!showEntryGate && (
           <div className="founder-sound-toggle absolute z-30 pointer-events-auto">
             <button
               type="button"
-              onClick={handleToggleSound}
+              onClick={(event) => {
+                event.stopPropagation();
+                if (isMuted) unlockWithSound(false);
+                else handleToggleSound(event);
+              }}
               className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-full transition-all duration-300 border ${
                 !isMuted
                   ? 'bg-[#171717] text-[#D6B879] border-[#D6B879]/40 hover:bg-[#222222] shadow-md'
                   : 'bg-white text-[#171717]/80 border-[#171717]/10 hover:bg-[#171717] hover:text-white'
               }`}
-              title={isMuted ? 'Unmute Founder Voice' : 'Mute Founder Voice'}
-              aria-label={isMuted ? 'Unmute Founder Voice' : 'Mute Founder Voice'}
+              title={isMuted ? 'Turn on founder audio' : 'Mute founder audio'}
+              aria-label={isMuted ? 'Turn on founder audio' : 'Mute founder audio'}
             >
               {!isMuted ? (
                 <>
@@ -323,7 +289,7 @@ export default function LipSyncAvatar({
                 <>
                   <VolumeX className="w-3.5 h-3.5" />
                   <span className="founder-sound-label text-[10px] font-mono tracking-wider uppercase">
-                    Muted
+                    {soundState === 'sound-blocked' || soundState === 'pending' ? 'Tap for sound' : 'Muted'}
                   </span>
                 </>
               )}
@@ -413,7 +379,10 @@ export default function LipSyncAvatar({
               autoPlay
               playsInline
               preload="auto"
-              onPlaying={() => setHasFirstFramePlayed(true)}
+              onPlaying={() => {
+                setHasFirstFramePlayed(true);
+                setIsEnded(false);
+              }}
               onTimeUpdate={() => {
                 if (!hasFirstFramePlayed && mediaRef.current && mediaRef.current.currentTime > 0) {
                   setHasFirstFramePlayed(true);

@@ -1,9 +1,8 @@
 /* No blur, fade, or mask effects on the founder. Edge quality comes from the video matte. */
 import React, { useState, useEffect } from 'react';
-import { Settings, Volume2, Sparkles, MapPin } from 'lucide-react';
+import { Volume2, Sparkles, MapPin } from 'lucide-react';
 import { eventHeroConfig } from '../../config/eventHeroConfig';
 import LipSyncAvatar from './LipSyncAvatar';
-import DigitalHostAdminModal from '../digital-host/DigitalHostAdminModal';
 
 /**
  * EventHeroSection Component
@@ -29,7 +28,6 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 
   // Trigger subtle entrance animation on mount
   useEffect(() => {
@@ -248,24 +246,6 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
         progress={progress}
       />
 
-      {/* Discrete Administrator Studio Trigger (Gear Icon in bottom right) */}
-      <div className="absolute bottom-5 right-5 z-40">
-        <button
-          type="button"
-          onClick={() => setIsAdminModalOpen(true)}
-          className="group flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/70 hover:bg-[#171717] text-[#171717]/60 hover:text-white border border-[#171717]/10 hover:border-[#D6B879] shadow-xs hover:shadow-md transition-all duration-300 text-xs font-semibold backdrop-blur-xs"
-          title="Open AI Avatar Studio"
-        >
-          <Settings className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-500" />
-          <span className="text-[10px] uppercase font-mono tracking-wider">Studio</span>
-        </button>
-      </div>
-
-      {/* Admin Studio Modal */}
-      <DigitalHostAdminModal
-        isOpen={isAdminModalOpen}
-        onClose={() => setIsAdminModalOpen(false)}
-      />
     </section>
   );
 }

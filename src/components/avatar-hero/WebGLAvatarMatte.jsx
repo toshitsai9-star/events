@@ -61,8 +61,12 @@ export default function WebGLAvatarMatte({
         vec2 coord = v_texCoord;
         vec4 src = texture2D(u_video, coord);
 
-        // Margins: outside the presenter envelope -> 100% transparent
-        if (coord.x < 0.22 || coord.x > 0.78 || coord.y < 0.060) {
+        // Feather the canvas crop instead of cutting it on a hard pixel edge.
+        // This prevents the rectangular crop from appearing around the silhouette.
+        float frameAlpha = smoothstep(0.205, 0.235, coord.x)
+                         * (1.0 - smoothstep(0.765, 0.795, coord.x))
+                         * smoothstep(0.035, 0.075, coord.y);
+        if (frameAlpha <= 0.001) {
           gl_FragColor = vec4(0.0);
           return;
         }
@@ -71,61 +75,60 @@ export default function WebGLAvatarMatte({
         float diffRB = src.r - src.b;
         float diffRG = src.r - src.g;
 
-        // Studio wall reference color profile
-        float bgR = 0.885;
-        float bgG = 0.855;
-        float bgB = 0.795;
-        vec3 dColor = src.rgb - vec3(bgR, bgG, bgB);
-        float wallDist = length(vec3(dColor.r, dColor.g, dColor.b * 1.15));
-
         // 1. CORE LOWER BODY & HANDS (y >= 0.52, x in [0.33, 0.67]):
         // Clasped hands, fingers, wrists, cuffs, watch, and shirt core are 100% SOLID
         // Zero fade, zero semi-transparency, solid down to the screen crop
-        if (coord.y >= 0.52 && coord.x >= 0.33 && coord.x <= 0.67) {
-          gl_FragColor = vec4(src.rgb, 1.0);
+        if (coord.y >= 0.48 && coord.x >= 0.27 && coord.x <= 0.73) {
+          gl_FragColor = vec4(src.rgb, frameAlpha);
           return;
         }
 
         // 2. DEFINITE HAIR / BEARD / DARK FEATURES -> 100% SOLID
         // Crisp curls and dark facial contours with zero halo
         if (lum < 0.32 || (coord.y < 0.36 && src.r < 0.42 && src.g < 0.40 && src.b < 0.38)) {
-          gl_FragColor = vec4(src.rgb, 1.0);
+          gl_FragColor = vec4(src.rgb, frameAlpha);
           return;
         }
 
         // 3. DEFINITE SKIN (Cheeks, forehead, nose, ears, neck):
         // 100% solid natural skin tones with zero color spill
-        if (diffRB > 0.110 && diffRG > 0.035 && lum < 0.92 && lum > 0.10) {
-          gl_FragColor = vec4(src.rgb, 1.0);
+        if (diffRB > 0.135 && diffRG > 0.075 && lum < 0.92 && lum > 0.10) {
+          gl_FragColor = vec4(src.rgb, frameAlpha);
           return;
         }
 
         // 4. UPPER CHEST SHIRT INTERIOR:
-        if (coord.x >= 0.30 && coord.x <= 0.70 && lum > 0.70 && diffRB < 0.045 && diffRG < 0.025) {
-          gl_FragColor = vec4(src.rgb, 1.0);
+        if (coord.y >= 0.34 && coord.x >= 0.28 && coord.x <= 0.72 && lum > 0.68 && diffRB < 0.055 && diffRG < 0.035) {
+          gl_FragColor = vec4(src.rgb, frameAlpha);
           return;
         }
 
-        // 5. STUDIO WALL BACKGROUND
-        // Keep the center of the wall fully transparent, then let the shared
-        // edge transition handle pixels near the presenter without a hard cut.
-        bool isWall = (diffRB >= 0.038 && diffRB <= 0.145 && diffRG >= 0.007 && diffRG <= 0.060 && lum >= 0.68 && wallDist < 0.055);
-        if (isWall && wallDist <= 0.018) {
+        // 5. SAMPLE THE STUDIO WALL AT THE SAME HEIGHT, OUTSIDE THE FOUNDER.
+        // The earlier radial sample could land on the shirt near the lower corners.
+        // A same-row side sample follows the wall's lighting while staying outside
+        // the subject, producing a more stable edge around hair and shoulders.
+        float wallX = coord.x < 0.5 ? 0.08 : 0.92;
+        vec3 localWall = texture2D(u_video, vec2(wallX, coord.y)).rgb;
+        float wallDiffRB = localWall.r - localWall.b;
+        float wallDiffRG = localWall.r - localWall.g;
+        float chromaDistance = length(vec2(diffRB - wallDiffRB, diffRG - wallDiffRG));
+        float colorDistance = length(src.rgb - localWall);
+        // Remove the remaining studio plate when it closely matches the
+        // same-height wall sample. Foreground regions (hair, skin, and shirt)
+        // are already handled by the solid-person branches above.
+        if (chromaDistance < 0.075 && colorDistance < 0.26) {
           gl_FragColor = vec4(0.0);
           return;
         }
+        // Ignore small luminance shifts in the studio wall. They are background
+        // lighting variation, and treating them as foreground creates ghosting.
+        float subjectDistance = max(chromaDistance, max(colorDistance - 0.08, 0.0) * 0.8);
+        // A narrow continuous edge transition keeps the silhouette clean while
+        // retaining enough feathering for hair and video compression noise.
+        float edgeAlpha = smoothstep(0.035, 0.125, subjectDistance) * frameAlpha;
 
-        // 6. SMOOTH EDGE TRANSITION & COLOR DECONTAMINATION:
-        // Smoothstep avoids a visibly jagged cutoff around hair and shoulders.
-        float edgeAlpha = smoothstep(0.018, 0.067, wallDist);
-
-        if (edgeAlpha <= 0.02) {
-          gl_FragColor = vec4(0.0);
-          return;
-        }
-
-        // Decontaminate edge pixels: unmix background wall tint without darkening shadow folds
-        vec3 unmixed = clamp((src.rgb - (1.0 - edgeAlpha) * vec3(bgR, bgG, bgB)) / max(edgeAlpha, 0.01), 0.0, 1.0);
+        // Remove the sampled wall color from partial edge pixels to avoid a pale fringe.
+        vec3 unmixed = clamp((src.rgb - (1.0 - edgeAlpha) * localWall) / max(edgeAlpha, 0.01), 0.0, 1.0);
 
         gl_FragColor = vec4(unmixed, edgeAlpha);
       }
