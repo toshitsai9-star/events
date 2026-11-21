@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionHeading from '../SectionHeading';
 import { ArrowUpRight, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -9,8 +9,6 @@ import { Link } from 'react-router-dom';
  * event productions across Weddings, Corporate, Birthdays, College, Cultural, and Entertainment.
  */
 export default function WorkPreviewSection() {
-  const [activeFilter, setActiveFilter] = useState('all');
-
   const portfolioItems = [
     {
       id: 1,
@@ -68,19 +66,6 @@ export default function WorkPreviewSection() {
     },
   ];
 
-  const filterTabs = [
-    { key: 'all', label: 'All Disciplines' },
-    { key: 'weddings', label: 'Weddings' },
-    { key: 'corporate', label: 'Corporate' },
-    { key: 'college', label: 'College Fests' },
-    { key: 'cultural', label: 'Cultural' },
-    { key: 'birthday', label: 'Birthdays' },
-    { key: 'entertainment', label: 'Concerts' },
-  ];
-
-  const filteredItems = activeFilter === 'all'
-    ? portfolioItems
-    : portfolioItems.filter((item) => item.category === activeFilter);
 
   return (
     <section id="work-preview" className="py-20 md:py-32 bg-forest text-ivory border-b border-gold/25 scroll-mt-20">
@@ -98,24 +83,8 @@ export default function WorkPreviewSection() {
           </p>
         </div>
 
-        <div className="reveal-init delay-100 flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-14">
-          {filterTabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveFilter(tab.key)}
-              className={`px-4 sm:px-5 py-2 text-xs uppercase tracking-[0.16em] font-sans transition-all duration-300 ${
-                activeFilter === tab.key
-                  ? 'bg-crimson text-white border border-crimson shadow-subtle'
-                  : 'bg-forest-light text-ivory/75 border border-gold/20 hover:border-gold hover:text-ivory'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="reveal-init delay-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((work, index) => (
+        <div className="reveal-init delay-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioItems.map((work, index) => (
             <div
               key={work.id}
               className={`group bg-forest-light border border-gold/20 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-gold hover:-translate-y-1 shadow-floating delay-${(index % 3) * 100}`}
