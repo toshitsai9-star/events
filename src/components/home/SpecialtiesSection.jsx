@@ -1,3 +1,4 @@
+import '../../styles/specialtiesCards.css';
 import React from 'react';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -31,7 +32,7 @@ export default function SpecialtiesSection() {
       number: '02',
       title: 'Corporate Events',
       eyebrow: 'Executive Summits & Launches',
-      description: 'High-precision event production for industry leaders—elevating corporate identity through state-of-the-art audiovisual staging, keynote theaters, and VIP hospitality.',
+      description: 'High-precision event production for industry leaders-elevating corporate identity through state-of-the-art audiovisual staging, keynote theaters, and VIP hospitality.',
       highlights: [
         'Corporate meetings',
         'Conferences & symposiums',
@@ -110,7 +111,7 @@ export default function SpecialtiesSection() {
       id: 'private',
       number: '07',
       title: 'Private Parties & Special Occasions',
-      eyebrow: 'Intimate Soirées & Family Feasts',
+      eyebrow: 'Intimate Soir�es & Family Feasts',
       description: 'Curating warm, luxurious private gatherings where personalized menus, bespoke floral arrangements, and cozy ambient lighting set the tone.',
       highlights: [
         'Anniversary celebrations',
@@ -220,73 +221,23 @@ export default function SpecialtiesSection() {
           ))}
         </div>
 
-        {/* Remaining 6 Categories in a Dynamic 3-Column Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Six event dossiers in a framed editorial gallery */}
+        <div className="event-dossier-grid">
           {categories.slice(2).map((item, idx) => {
-            const cardLooks = [
-              { shell: 'rounded-[2rem_2rem_0.5rem_2rem] bg-forest text-ivory border-forest shadow-xl', image: 'aspect-[3/4]', dark: true },
-              { shell: 'rounded-xl bg-[#fbf4e6] text-charcoal border-gold/30 shadow-sm md:-translate-y-3', image: 'aspect-[16/10]', dark: false },
-              { shell: 'rounded-t-[5rem] rounded-b-md bg-white text-charcoal border-gold/35 shadow-lg', image: 'aspect-[4/3]', dark: false },
-              { shell: 'rounded-md bg-[#f5e8d7] text-charcoal border-transparent shadow-md md:rotate-[0.4deg]', image: 'aspect-[5/4]', dark: false },
-              { shell: 'rounded-[2.5rem] bg-[#192a25] text-ivory border-gold/25 shadow-xl', image: 'aspect-[4/5]', dark: true },
-              { shell: 'rounded-[1rem_3rem_1rem_3rem] bg-[#eee6da] text-charcoal border-gold/30 shadow-subtle', image: 'aspect-[16/10]', dark: false },
-            ];
-            const look = cardLooks[idx];
+            const tone = ['ivory', 'forest', 'sand', 'ink', 'paper', 'forest'][idx];
             return (
-            <div
-              key={item.id}
-              className={`group border overflow-hidden flex flex-col justify-between transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-2xl reveal-init reveal-delay-${(idx % 3) * 100} ${look.shell}`}
-            >
-              <div className={`relative ${look.image} overflow-hidden bg-beige`}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 left-3 bg-forest/90 px-2.5 py-1 border border-gold/30 text-[9px] uppercase tracking-widest text-ivory font-sans">
-                  {item.tag}
+              <article key={item.id} className={`event-dossier event-dossier--${tone} reveal-init reveal-delay-${(idx % 3) * 100}`}>
+                <header className="event-dossier__masthead"><span>{item.tag}</span><span className="event-dossier__folio">{item.number}<i>/</i></span></header>
+                <div className="event-dossier__photo"><img src={item.image} alt={item.title} loading="lazy" /><span className="event-dossier__photo-caption">ADI REDDY EVENTS � HYDERABAD</span></div>
+                <div className="event-dossier__copy">
+                  <span className="event-dossier__eyebrow">{item.eyebrow}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <ul>{item.highlights.slice(0, 3).map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
+                  <Link to="/gallery-contact" className="event-dossier__link"><span>Plan this event</span><ArrowUpRight aria-hidden="true" /></Link>
                 </div>
-                <div className="absolute top-3 right-3 bg-ivory/90 px-2 py-0.5 font-mono text-xs text-charcoal font-medium border border-gold/30">
-                  {item.number}
-                </div>
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <span className={`text-[10px] uppercase tracking-[0.2em] font-sans font-medium block mb-1 ${look.dark ? 'text-gold-light' : 'text-gold'}`}>
-                    {item.eyebrow}
-                  </span>
-                  <h3 className={`font-serif text-xl transition-colors ${look.dark ? 'text-ivory group-hover:text-gold-light' : 'text-charcoal group-hover:text-forest'}`}>
-                    {item.title}
-                  </h3>
-                  <p className={`font-sans text-xs leading-relaxed mt-2.5 ${look.dark ? 'text-ivory/75' : 'text-charcoal/70'}`}>
-                    {item.description}
-                  </p>
-
-                  <div className="mt-4 pt-3 border-t border-gold/15">
-                    <ul className={`space-y-1.5 text-xs font-sans ${look.dark ? 'text-ivory/80' : 'text-charcoal/75'}`}>
-                      {item.highlights.slice(0, 3).map((h, idx) => (
-                        <li key={idx} className="flex items-center space-x-1.5">
-                          <span className={`w-1 h-1 rounded-full flex-shrink-0 ${look.dark ? 'bg-gold-light' : 'bg-gold'}`} />
-                          <span className="truncate">{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-gold/20">
-                  <Link
-                    to="/gallery-contact"
-                    className={`inline-flex items-center text-xs uppercase tracking-[0.16em] font-sans font-medium transition-colors group/btn ${look.dark ? 'text-gold-light hover:text-white' : 'text-forest hover:text-crimson'}`}
-                  >
-                    <span>Plan This Event</span>
-                    <ArrowUpRight className="ml-1 w-3 h-3 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
+                <span className="event-dossier__side-label">CURATED EVENT EXPERIENCE</span>
+              </article>
             );
           })}
         </div>
@@ -308,4 +259,5 @@ export default function SpecialtiesSection() {
     </section>
   );
 }
+
 
