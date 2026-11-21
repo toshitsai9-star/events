@@ -214,7 +214,7 @@ export default function ServicesShowcase() {
                 href={`#category-${cat.id}`}
                 className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-beige/40 hover:bg-forest hover:text-ivory border border-gold/30 text-[11px] font-sans uppercase tracking-wider text-charcoal/80 transition-colors duration-200"
               >
-                <span className="font-mono text-gold font-semibold">{cat.number}</span>
+                <span className="number-display text-gold font-semibold">{cat.number}</span>
                 <span>{cat.title.split(' ')[0]}</span>
               </a>
             ))}
