@@ -72,7 +72,7 @@ export default function ServicesProcess() {
                       <Icon className="w-5 h-5 text-gold group-hover:text-gold-light transition-colors" />
                     </div>
                     <span className="font-mono text-xs uppercase tracking-widest text-gold font-semibold">
-                      PHASE {s.number}
+                      PHASE <span className="number-display">{s.number}</span>
                     </span>
                   </div>
 
