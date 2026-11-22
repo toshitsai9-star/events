@@ -2,7 +2,6 @@ import React from 'react';
 import EventHeroSection from '../components/avatar-hero/EventHeroSection';
 import IntroSection from '../components/home/IntroSection';
 import SpecialtiesSection from '../components/home/SpecialtiesSection';
-import WorkPreviewSection from '../components/home/WorkPreviewSection';
 import HomeCTASection from '../components/home/HomeCTASection';
 
 /**
@@ -13,8 +12,7 @@ import HomeCTASection from '../components/home/HomeCTASection';
  *    (All talking avatar, speech, audio, and video capabilities integrated directly into the portrait - no separate sections).
  * 2. IntroSection: "More Than Events. We Create Experiences."
  * 3. SpecialtiesSection: 8 Comprehensive Event Categories.
- * 4. WorkPreviewSection: Photographic Showcase.
- * 5. HomeCTASection: Consultation Inquiries & Contact Suite.
+ * 4. HomeCTASection: Consultation Inquiries & Contact Suite.
  */
 export default function Home() {
   return (
@@ -28,10 +26,7 @@ export default function Home() {
       {/* 3. Event Specialties */}
       <SpecialtiesSection />
 
-      {/* 4. Curated Photographic Showcase */}
-      <WorkPreviewSection />
-
-      {/* 5. Closing Booking Call to Action */}
+      {/* 4. Closing Booking Call to Action */}
       <HomeCTASection />
     </div>
   );

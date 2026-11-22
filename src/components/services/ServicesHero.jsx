@@ -37,7 +37,7 @@ export default function ServicesHero() {
           <div className="lg:col-span-7 space-y-6 text-left">
             <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 border border-gold/40 bg-beige/50 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-charcoal/80 font-sans animate-fade-down">
               <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <span>Full-Scope Event Management Atelier</span>
+              <span>Event Planning & Production</span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-charcoal leading-[1.1] tracking-tight animate-fade-up">
@@ -50,7 +50,7 @@ export default function ServicesHero() {
             <div className="w-16 h-[1px] bg-gold animate-fade-in delay-100" />
 
             <p className="font-sans text-base sm:text-lg text-charcoal/80 max-w-xl leading-relaxed font-light animate-fade-up delay-200">
-              From intimate celebrations to large-scale productions, we plan, organize and bring unforgettable events to life.
+              Event planning and production for celebrations of every size.
             </p>
 
             {/* Hero Action CTA */}
@@ -60,33 +60,6 @@ export default function ServicesHero() {
               </PrimaryButton>
             </div>
 
-            {/* Reassurance Metadata */}
-            <div className="pt-8 border-t border-gold/20 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs font-sans animate-fade-up delay-400">
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-gold block font-medium">
-                  Categories
-                </span>
-                <span className="font-serif text-charcoal text-base">
-                  9 Specialized Disciplines
-                </span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-gold block font-medium">
-                  Approach
-                </span>
-                <span className="font-serif text-charcoal text-base">
-                  Turnkey Coordination
-                </span>
-              </div>
-              <div className="col-span-2 sm:col-span-1">
-                <span className="text-[10px] uppercase tracking-widest text-gold block font-medium">
-                  Execution
-                </span>
-                <span className="font-serif text-charcoal text-base">
-                  On-Site Directorate
-                </span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Multi-Category Event Photograph */}
@@ -94,13 +67,13 @@ export default function ServicesHero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[4/5]">
                 <img
-                  src="https://images.unsplash.com/photo-1773828755374-0ee802d9f44b?auto=format&fit=crop&w=1200&q=80"
-                  alt="Full-spectrum grand stage and audience event production by Adi Reddy Events"
+                  src="/videos/portfolio/film2_poster.jpg"
+                  alt="Real event production footage from Adi Reddy Events"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-105"
                   loading="eager"
                 />
                 <div className="absolute top-4 left-4 bg-forest/90 backdrop-blur-xs px-3 py-1 border border-gold/30 text-[10px] uppercase tracking-[0.2em] text-ivory font-sans">
-                  Comprehensive Event Staging
+                  On-site Event Production
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent pointer-events-none" />
               </div>

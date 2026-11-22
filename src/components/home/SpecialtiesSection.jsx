@@ -26,7 +26,7 @@ export default function SpecialtiesSection() {
         'Wedding stage decoration',
         'Floral & venue decoration',
       ],
-      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80',
+      image: '/videos/optimized/wedding-poster-720.jpg',
       tag: 'Signature Showcase',
     },
     {
@@ -42,7 +42,7 @@ export default function SpecialtiesSection() {
         'Award ceremonies',
         'Business gatherings',
       ],
-      image: 'https://images.unsplash.com/photo-1783486620945-f9bd1fa69f86?auto=format&fit=crop&w=1000&q=80',
+      image: '/videos/portfolio/film2_poster.jpg',
       tag: 'Professional Execution',
     },
     {
@@ -58,7 +58,7 @@ export default function SpecialtiesSection() {
         'Public performances',
         'Special showcases',
       ],
-      image: 'https://images.unsplash.com/photo-1776883291831-ca37d8677358?auto=format&fit=crop&w=1000&q=80',
+      image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=80',
       tag: 'Arena & Stage',
     },
     {
@@ -74,7 +74,7 @@ export default function SpecialtiesSection() {
         'Farewell events',
         'Cultural competitions',
       ],
-      image: 'https://images.unsplash.com/photo-1762765684810-b734486c5eda?auto=format&fit=crop&w=1000&q=80',
+      image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80',
       tag: 'Youth & Campus',
     },
     {
@@ -90,7 +90,7 @@ export default function SpecialtiesSection() {
         'Cultural performances',
         'Public celebrations',
       ],
-      image: 'https://images.unsplash.com/photo-1731529076100-bf59499fb61c?auto=format&fit=crop&w=1000&q=80',
+      image: '/videos/optimized/feast-poster-720.jpg',
       tag: 'Heritage & Faith',
     },
     {
@@ -106,7 +106,7 @@ export default function SpecialtiesSection() {
         'Kids\' themed parties',
         'Custom dessert & stage setups',
       ],
-      image: 'https://images.unsplash.com/photo-1774290687117-eb1769c33df3?auto=format&fit=crop&w=1000&q=80',
+      image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1000&q=80',
       tag: 'Joyful Milestones',
     },
     {
@@ -122,7 +122,7 @@ export default function SpecialtiesSection() {
         'Baby showers & cradle ceremonies',
         'Intimate engagement parties',
       ],
-      image: 'https://images.unsplash.com/photo-1757030477778-9a1710b16948?auto=format&fit=crop&w=1000&q=80',
+      image: '/videos/optimized/housewarming-poster-720.jpg',
       tag: 'Intimate & Bespoke',
     },
     {
@@ -138,7 +138,7 @@ export default function SpecialtiesSection() {
         'Pop-up exhibitions',
         'Custom event planning',
       ],
-      image: 'https://images.unsplash.com/photo-1788156225215-3c807c9d4730?auto=format&fit=crop&w=1000&q=80',
+      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80',
       tag: 'Infinite Possibility',
     },
   ];
@@ -151,7 +151,7 @@ export default function SpecialtiesSection() {
         <SectionHeading
           eyebrow="Our Event Specialties"
           title="Comprehensive Planning For Every Occasion"
-          description="We are a complete event management company. Whether it is a grand royal wedding, a high-level corporate convention, or an energetic college concert, we deliver perfection at every scale."
+          description="Weddings, milestones, festivals and live productions."
           align="center"
           className="mb-16 md:mb-20"
         />
@@ -193,10 +193,10 @@ export default function SpecialtiesSection() {
 
                   <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-gold/20">
                     <span className="text-[10px] uppercase tracking-widest text-gold font-sans font-semibold block mb-2">
-                      Key Capabilities:
+                      Highlights:
                     </span>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-charcoal/80">
-                      {item.highlights.map((h, idx) => (
+                      {item.highlights.slice(0, 3).map((h, idx) => (
                         <li key={idx} className="flex items-center space-x-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-crimson flex-shrink-0" />
                           <span>{h}</span>
@@ -230,11 +230,11 @@ export default function SpecialtiesSection() {
           aria-controls="more-event-specialties"
           onClick={() => setShowMoreSpecialties((visible) => !visible)}
         >
-          {showMoreSpecialties ? 'Show fewer specialties' : 'Explore 6 more event types'}
+          {showMoreSpecialties ? 'Show fewer specialties' : 'View all 8 event types'}
         </button>
 
         {/* Six event dossiers are collapsed behind a mobile disclosure to keep the phone view focused. */}
-        <div id="more-event-specialties" className="event-dossier-grid" data-mobile-expanded={showMoreSpecialties} role="region" aria-label="More event specialties" tabIndex={0}>
+        <div id="more-event-specialties" className="event-dossier-grid" data-expanded={showMoreSpecialties} role="region" aria-label="More event specialties" tabIndex={0}>
           {categories.slice(2).map((item, idx) => {
             const tone = ['ivory', 'forest', 'sand', 'ink', 'paper', 'forest'][idx];
             return (
@@ -255,17 +255,7 @@ export default function SpecialtiesSection() {
         </div>
 
         {/* Category Consultation Note */}
-        <div className="mt-16 text-center">
-          <p className="font-serif italic text-base text-charcoal/80 mb-4">
-            "Looking to organize a unique combination of celebrations or an unlisted special format?"
-          </p>
-          <Link
-            to="/gallery-contact"
-            className="inline-flex items-center justify-center font-sans text-xs uppercase tracking-[0.18em] px-8 py-3.5 bg-crimson text-white hover:bg-crimson-hover transition-colors shadow-subtle border border-crimson"
-          >
-            <span>Discuss A Custom Event Brief</span>
-          </Link>
-        </div>
+        
 
       </div>
     </section>

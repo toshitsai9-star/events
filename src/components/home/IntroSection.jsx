@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
  */
 export default function IntroSection() {
   const highlights = [
-    'Bespoke spatial design & theme conceptualization',
-    'Full-service logistics, vendor curation & coordination',
-    'Live entertainment, artist management & acoustic staging',
-    'Seamless on-ground execution for gatherings of any scale',
+    'Creative event design',
+    'Planning and vendor coordination',
+    'On-site production',
   ];
 
   return (
@@ -24,31 +23,15 @@ export default function IntroSection() {
             <div className="relative">
               <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[3/4]">
                 <img
-                  src="https://images.unsplash.com/photo-1768508948334-541161d1cb5c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Atmospheric Evening Gathering orchestrated by Adi Reddy Events"
+                  src="/videos/optimized/feast-poster-720.jpg"
+                  alt="Real footage from a traditional Konaseema celebration"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-6 left-6 right-6 text-ivory">
-                  <span className="text-[10px] uppercase tracking-widest text-gold-light font-sans block mb-1">
-                    Atmosphere & Ambiance
-                  </span>
-                  <p className="font-serif italic text-base sm:text-lg text-ivory/95">
-                    "Every space transformed into a living, breathing sanctuary of celebration."
-                  </p>
-                </div>
+                
               </div>
 
-              {/* Offset Decorative Accent Badge */}
-              <div className="hidden sm:block absolute -top-6 -right-6 bg-beige border border-gold/40 p-4 shadow-subtle max-w-[180px]">
-                <span className="text-[10px] uppercase tracking-widest text-gold font-sans font-semibold block mb-0.5">
-                  Complete
-                </span>
-                <span className="font-serif text-sm text-charcoal block">
-                  Turnkey Event Management
-                </span>
-              </div>
             </div>
           </div>
 
@@ -56,7 +39,7 @@ export default function IntroSection() {
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
             <div className="inline-block">
               <span className="text-xs uppercase tracking-[0.25em] text-gold font-sans font-medium">
-                The Adi Reddy Philosophy
+                Planning & Production
               </span>
               <div className="w-12 h-[1px] bg-gold mt-2" />
             </div>
@@ -69,7 +52,7 @@ export default function IntroSection() {
             </h2>
 
             <p className="font-sans text-base sm:text-lg text-charcoal/80 leading-relaxed font-light">
-              At Adi Reddy Events, we believe every occasion deserves thoughtful planning and exceptional execution. From personal celebrations to large-scale gatherings, we create experiences that bring people together and leave lasting impressions.
+              We plan and produce weddings, cultural celebrations and large events, bringing each idea through to on-site execution.
             </p>
 
             <div className="space-y-3.5 pt-4">

@@ -7,8 +7,7 @@ import SectionHeading from '../SectionHeading';
 /**
  * ServicesShowcase
  * Editorial showcase for all 9 Event Categories of Adi Reddy Events.
- * Features an alternating asymmetrical layout, combination of large and small imagery,
- * curated luxury photography, dedicated service checklists, and deep-linked category enquiry triggers.
+ * Shows a short service list first; the remaining categories stay available on demand.
  */
 export default function ServicesShowcase() {
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -20,9 +19,7 @@ export default function ServicesShowcase() {
       title: 'Weddings & Receptions',
       eyebrow: 'Bespoke Nuptials & Grand Galas',
       intro: 'From architectural floral mandaps and royal stage decor to seamless guest hospitality, we orchestrate wedding celebrations that reflect your heritage and personal love story.',
-      primaryImage: 'https://images.unsplash.com/photo-1771929836785-065bb7635053?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Floral Scenography & Styling',
+      primaryImage: '/videos/optimized/wedding-poster-720.jpg',
       services: [
         'Wedding planning',
         'Reception arrangements',
@@ -40,9 +37,7 @@ export default function ServicesShowcase() {
       title: 'Birthday Celebrations',
       eyebrow: 'Milestones & Themed Parties',
       intro: 'Creating joyous, imaginative celebrations—from magical wonderland themes for children to sophisticated milestone jubilee dinners filled with tailored personal touches.',
-      primaryImage: 'https://images.unsplash.com/photo-1768767278997-136b49ce5d99?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Themed Decor & Stage Fabrication',
+      primaryImage: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80',
       services: [
         "Kids' birthday parties",
         'Adult birthday celebrations',
@@ -60,9 +55,7 @@ export default function ServicesShowcase() {
       title: 'Corporate Events',
       eyebrow: 'Conferences & Brand Launches',
       intro: 'Engineering polished, technically flawless corporate environments that reinforce company stature, captivate stakeholders, and facilitate executive networking.',
-      primaryImage: 'https://images.unsplash.com/photo-1781395170484-1706591c77e7?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1783153917034-9ae118c1c0fa?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Executive Staging & AV Production',
+      primaryImage: '/videos/portfolio/film2_poster.jpg',
       services: [
         'Corporate conferences',
         'Business meetings',
@@ -80,9 +73,7 @@ export default function ServicesShowcase() {
       title: 'College & Educational Events',
       eyebrow: 'Campus Carnivals & Cultural Fests',
       intro: 'Energizing university campuses with high-spirited cultural competitions, celebrity pro-nights, and commemorative ceremonies orchestrated with total crowd safety.',
-      primaryImage: 'https://images.unsplash.com/photo-1774519680492-a12c0a866b8a?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1768851142332-75f3d1b47452?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Campus Arena & Acoustic Staging',
+      primaryImage: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80',
       services: [
         'College festivals',
         "Freshers' parties",
@@ -101,9 +92,7 @@ export default function ServicesShowcase() {
       title: 'Cultural & Traditional Events',
       eyebrow: 'Heritage Festivities & Community',
       intro: 'Honoring sacred traditions, festive melas, and cultural gatherings with authentic thematic decor, traditional stage craft, and deep ritualistic respect.',
-      primaryImage: 'https://images.unsplash.com/photo-1768508950624-d65f9d73d666?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1779893529776-1ce2e76a1e49?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Traditional Mandap & Diya Decor',
+      primaryImage: '/videos/optimized/feast-poster-720.jpg',
       services: [
         'Cultural festivals',
         'Traditional celebrations',
@@ -121,9 +110,7 @@ export default function ServicesShowcase() {
       title: 'Concerts & Entertainment',
       eyebrow: 'Live Music & Arena Shows',
       intro: 'Managing stadium acoustics, intelligent truss beam choreography, artist liaison, and safe crowd ingress for electrifying musical nights and public spectacles.',
-      primaryImage: 'https://images.unsplash.com/photo-1774438460477-127eb5d65473?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1770140304060-4657d44b6dfa?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Dynamic Truss & Concert Lighting',
+      primaryImage: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Live music shows',
         'DJ events',
@@ -141,9 +128,7 @@ export default function ServicesShowcase() {
       title: 'Private Parties & Special Occasions',
       eyebrow: 'Intimate Soirées & Family Feasts',
       intro: 'Orchestrating exclusive family milestones in private residences and scenic estates, focusing on intimate warmth, bespoke dining, and subtle acoustic luxury.',
-      primaryImage: 'https://images.unsplash.com/photo-1769812343590-485512e27838?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1738217383996-9947554e9f28?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Candlelight Soirées & Table Decor',
+      primaryImage: '/videos/optimized/housewarming-poster-720.jpg',
       services: [
         'Anniversary celebrations',
         'Baby showers',
@@ -161,9 +146,7 @@ export default function ServicesShowcase() {
       title: 'Exhibitions & Public Events',
       eyebrow: 'Trade Expos & Brand Activations',
       intro: 'Constructing immersive exhibition pavilions, promotional trade stalls, and structured public event zones designed for high footfall engagement and brand recall.',
-      primaryImage: 'https://images.unsplash.com/photo-1768508951405-10e83c4a2872?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1768508947362-bca7a379e62a?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Pavilion Stalls & Product Displays',
+      primaryImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Trade exhibitions',
         'Product exhibitions',
@@ -182,8 +165,6 @@ export default function ServicesShowcase() {
       eyebrow: 'Tailored Concepts & Unique Themes',
       intro: 'For rare concepts, experiential pop-ups, and unconventional celebrations. If you can envision it, our production engineers and artists will build it.',
       primaryImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
-      secondaryImage: 'https://images.unsplash.com/photo-1777332547120-e7ec407b5ed6?auto=format&fit=crop&w=600&q=80',
-      secondaryCaption: 'Avant-Garde Set Fabrication',
       services: [
         'Personalized event planning',
         'Unique event concepts',
@@ -203,7 +184,7 @@ export default function ServicesShowcase() {
         <SectionHeading
           eyebrow="Complete Event Services"
           title="Nine Distinct Disciplines. One Uncompromising Standard."
-          description="We are a comprehensive event management atelier. Explore our nine specialized service sectors below, each backed by dedicated production directors and experienced on-ground crews."
+          description="We are a comprehensive event management atelier. Browse our event services and see how we can help."
           align="center"
           className="mb-12 md:mb-16"
         />
@@ -259,23 +240,6 @@ export default function ServicesShowcase() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                     </div>
 
-                    {/* Secondary Smaller Accent Image (Combined Composition) */}
-                    <div
-                      className={`hidden sm:block absolute -bottom-6 ${
-                        isEven ? '-left-6' : '-right-6'
-                      } w-44 md:w-52 aspect-[4/3] overflow-hidden bg-beige border-2 border-ivory shadow-lg z-10 transition-transform duration-500 group-hover:-translate-y-1`}
-                    >
-                      <img
-                        src={cat.secondaryImage}
-                        alt={`${cat.title} detail - Adi Reddy Events`}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute bottom-1.5 left-2 right-2 bg-charcoal/85 backdrop-blur-xs px-2 py-0.5 text-[9px] uppercase tracking-wider text-ivory font-sans text-center truncate border border-gold/30">
-                        {cat.secondaryCaption}
-                      </div>
-                    </div>
-
                     {/* Subtle decorative architectural corner line */}
                     <div
                       className={`hidden sm:block absolute -top-4 ${
@@ -321,7 +285,7 @@ export default function ServicesShowcase() {
                     </span>
 
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm font-sans text-charcoal/85">
-                      {cat.services.map((s, idx) => (
+                      {cat.services.slice(0, 4).map((s, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <div className="w-4 h-4 rounded-full bg-beige border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check className="w-2.5 h-2.5 text-gold" />

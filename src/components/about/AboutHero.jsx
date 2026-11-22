@@ -49,20 +49,8 @@ export default function AboutHero() {
             <div className="w-16 h-[1px] bg-gold animate-fade-in delay-100" />
 
             <p className="font-sans text-base sm:text-lg text-charcoal/80 max-w-xl leading-relaxed font-light animate-fade-up delay-200">
-              We are passionate about bringing people together through thoughtfully planned events, creative concepts and unforgettable experiences.
+              Adi Reddy Events plans celebrations with creative direction, clear coordination and on-site production.
             </p>
-
-            <div className="pt-2 flex items-center space-x-8 text-xs font-sans uppercase tracking-[0.18em] text-gold animate-fade-up delay-300">
-              <div>
-                <span className="block text-charcoal font-serif text-xl sm:text-2xl font-normal">Full-Scope</span>
-                <span className="text-gold text-[10px] tracking-widest">Event Management</span>
-              </div>
-              <div className="h-8 w-[1px] bg-gold/30" />
-              <div>
-                <span className="block text-charcoal font-serif text-xl sm:text-2xl font-normal">End-to-End</span>
-                <span className="text-gold text-[10px] tracking-widest">Thoughtful Planning</span>
-              </div>
-            </div>
           </div>
 
           {/* Hero Photography: Beautifully Arranged Event Venue */}
@@ -70,13 +58,13 @@ export default function AboutHero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[4/5]">
                 <img
-                  src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80"
-                  alt="Beautifully arranged grand event venue orchestrated by Adi Reddy Events"
+                  src="/anil-reddy-founder.jpg"
+                  alt="Adi Reddy, founder of Adi Reddy Events"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-105"
                   loading="eager"
                 />
                 <div className="absolute top-4 left-4 bg-forest/90 backdrop-blur-xs px-3 py-1 border border-gold/30 text-[10px] uppercase tracking-[0.2em] text-ivory font-sans">
-                  Curated Atmospheres
+                  Meet the Founder
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent pointer-events-none" />
               </div>

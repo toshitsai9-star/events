@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Calendar, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import PrimaryButton from '../PrimaryButton';
-import SecondaryButton from '../SecondaryButton';
 
 /**
  * ServicesCTA
@@ -35,7 +34,7 @@ export default function ServicesCTA() {
         <div className="w-16 h-[1px] bg-gold/50 mx-auto" />
 
         <p className="font-sans text-base sm:text-lg text-beige/80 max-w-2xl mx-auto leading-relaxed font-light">
-          Tell us what you are planning. Together, let's create an event worth remembering.
+          Tell us what you have in mind.
         </p>
 
         {/* Primary & Secondary Actions */}
@@ -43,26 +42,10 @@ export default function ServicesCTA() {
           <PrimaryButton to="/gallery-contact" variant="crimson" icon={ArrowRight}>
             Plan Your Event
           </PrimaryButton>
-          <SecondaryButton to="/about" variant="ivory">
-            About Our Atelier
-          </SecondaryButton>
         </div>
 
         {/* Reassurance Metadata */}
-        <div className="pt-10 border-t border-gold/20 grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs font-sans text-beige/70">
-          <div className="flex items-center justify-center space-x-2.5">
-            <Calendar className="w-4 h-4 text-gold flex-shrink-0" />
-            <span>Structured Run-of-Show Scheduling</span>
-          </div>
-          <div className="flex items-center justify-center space-x-2.5">
-            <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-            <span>Hyderabad & Pan-India Production</span>
-          </div>
-          <div className="flex items-center justify-center space-x-2.5">
-            <Mail className="w-4 h-4 text-gold flex-shrink-0" />
-            <span>Detailed Itemized Cost Proposals</span>
-          </div>
-        </div>
+        
 
       </div>
     </section>

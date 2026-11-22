@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionHeading from '../SectionHeading';
-import { Search, Palette, CalendarCheck, Sparkles, ArrowRight } from 'lucide-react';
+import { Search, Palette, CalendarCheck, Sparkles } from 'lucide-react';
 
 /**
  * PlanningApproach
@@ -14,28 +14,24 @@ export default function PlanningApproach() {
       title: 'DISCOVER',
       icon: Search,
       description: "Understand the client's vision, requirements, occasion and expectations.",
-      deliverable: 'Discovery session, budget alignment, initial feasibility review.',
     },
     {
       step: 'STEP 02',
       title: 'DESIGN',
       icon: Palette,
       description: 'Develop the creative concept, event theme and visual direction.',
-      deliverable: 'Moodboards, theme palettes, spatial decor concepts.',
     },
     {
       step: 'STEP 03',
       title: 'PLAN',
       icon: CalendarCheck,
       description: 'Coordinate the arrangements, schedules, requirements and execution details.',
-      deliverable: 'Vendor alignment, technical checklists, run-of-show timeline.',
     },
     {
       step: 'STEP 04',
       title: 'CELEBRATE',
       icon: Sparkles,
       description: 'Bring the plan to life and create an enjoyable event experience.',
-      deliverable: 'Live on-site coordination, guest hospitality, flawless finish.',
     },
   ];
 
@@ -47,7 +43,7 @@ export default function PlanningApproach() {
         <SectionHeading
           eyebrow="The Planning Process"
           title="From First Conversation to Final Celebration."
-          description="We make event planning calm, transparent, and joyful. Our four-step workflow ensures no detail is left to chance."
+          description="Four clear steps, from the first conversation to event day."
           align="center"
           className="mb-16 md:mb-20"
         />
@@ -86,14 +82,7 @@ export default function PlanningApproach() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-gold/15">
-                  <span className="text-[10px] uppercase tracking-widest text-gold font-sans font-semibold block mb-1">
-                    Key Focus:
-                  </span>
-                  <p className="text-xs font-sans text-charcoal/65 leading-snug">
-                    {s.deliverable}
-                  </p>
-                </div>
+                
               </div>
             );
           })}

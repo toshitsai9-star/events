@@ -152,118 +152,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* 3. FEATURED SPOTLIGHT PRODUCTION */}
-      {featuredVideo && (
-        <section className="py-12 md:py-16 bg-[#06110C] text-ivory border-b border-gold/25">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-gold/20">
-              <div className="flex items-center space-x-3">
-                <Sparkles className="w-4 h-4 text-gold" />
-                <span className="text-xs uppercase tracking-[0.22em] text-gold-light font-sans font-medium">
-                  Featured On-Site Production
-                </span>
-              </div>
-              <span className="text-xs uppercase tracking-widest text-gold font-sans hidden sm:inline-flex items-center space-x-1.5">
-                <Smartphone className="w-3.5 h-3.5" />
-                <span>On-Site Walkthrough</span>
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Video Player / Poster Viewport */}
-              <div className="lg:col-span-6 flex justify-center">
-                <div 
-                  onClick={() => handleOpenVideo(featuredVideo)}
-                  className="relative w-full max-w-md aspect-[9/14] sm:aspect-[9/15] rounded-xs overflow-hidden border border-gold/40 shadow-2xl cursor-pointer group bg-black/80"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Play ${featuredVideo.title}`}
-                >
-                  <img
-                    src={featuredVideo.posterUrl}
-                    alt={featuredVideo.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30" />
-                  
-                  {/* Floating Center Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full bg-gold/90 text-charcoal flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-gold transition-all duration-300">
-                      <Play className="w-8 h-8 fill-charcoal translate-x-0.5" />
-                    </div>
-                  </div>
-
-                  {/* Badges on Video */}
-                  <div className="absolute top-4 left-4 flex items-center space-x-2">
-                    <span className="px-3 py-1 bg-forest/90 backdrop-blur-md text-[10px] uppercase tracking-widest text-gold border border-gold/30">
-                      {featuredVideo.categoryLabel}
-                    </span>
-                    <span className="px-2.5 py-1 bg-crimson/90 backdrop-blur-md text-[10px] uppercase tracking-widest text-white">
-                      Live Video
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 right-4 flex items-center space-x-1.5 px-2.5 py-1 bg-black/75 backdrop-blur-md text-xs text-ivory/90 rounded-xs">
-                    <Clock className="w-3.5 h-3.5 text-gold" />
-                    <span>{featuredVideo.duration}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Spotlight Info */}
-              <div className="lg:col-span-6 space-y-6 text-left">
-                <div className="flex items-center space-x-2 text-xs text-gold-light uppercase tracking-widest font-sans">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>{featuredVideo.location}</span>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-xs uppercase tracking-[0.2em] text-gold font-sans block">
-                    {featuredVideo.subtitle}
-                  </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-ivory leading-snug">
-                    {featuredVideo.title}
-                  </h2>
-                </div>
-
-                <p className="font-sans text-sm sm:text-base text-beige/80 leading-relaxed font-light">
-                  {featuredVideo.description}
-                </p>
-
-                {/* Highlights Tags */}
-                <div className="pt-2 flex flex-wrap gap-2">
-                  {featuredVideo.highlights?.map((tag, idx) => (
-                    <span 
-                      key={idx}
-                      className="text-[11px] font-sans px-3 py-1 bg-forest-light/60 border border-gold/25 text-gold-light/90"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-4 flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={() => handleOpenVideo(featuredVideo)}
-                    className="inline-flex items-center justify-center font-sans text-xs uppercase tracking-[0.18em] px-7 py-3.5 bg-crimson text-white hover:bg-crimson-hover transition-all duration-300 shadow-subtle group cursor-pointer"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-current mr-2" />
-                    <span>Play Production Video</span>
-                  </button>
-
-                  <Link
-                    to="/gallery-contact"
-                    className="inline-flex items-center justify-center font-sans text-xs uppercase tracking-[0.18em] px-7 py-3.5 border border-gold/60 text-ivory hover:bg-gold hover:text-charcoal transition-all duration-300"
-                  >
-                    <span>Plan Similar Event</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* 3. CATEGORY FILTER TABS & MAIN VIDEO GALLERY */}
       <section className="film-gallery" id="film-gallery">
         <div className="film-gallery__content">
@@ -533,7 +421,7 @@ export default function Portfolio() {
               to="/gallery-contact"
               className="inline-flex items-center justify-center font-sans text-xs sm:text-sm uppercase tracking-[0.18em] px-8 py-4 bg-crimson text-white hover:bg-crimson-hover transition-all duration-300 shadow-lg border border-crimson"
             >
-              <span>Schedule Direct Consultation</span>
+              <span>Plan Your Event</span>
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
 

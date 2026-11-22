@@ -10,26 +10,9 @@ export default function ServicesFAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
-    {
-      q: 'How early should we initiate planning for our event?',
-      a: 'For sovereign weddings, arena concerts, and large-scale corporate summits, we recommend reaching out 6 to 9 months in advance to secure preferred venues, top-tier artists, and municipal permissions. For private parties, milestone birthdays, and college festivals, 2 to 4 months allows ample time for custom concept drafting and procurement.',
-    },
-    {
-      q: 'Do you manage events outside of Hyderabad?',
-      a: 'Yes. While our primary atelier and production warehouse are based in Hyderabad, we regularly execute destination weddings, multi-city corporate tours, and sovereign retreats across India and select international destinations.',
-    },
-    {
-      q: 'Can Adi Reddy Events work within our specific budget parameters?',
-      a: 'We believe in transparent, value-driven budgeting. During our initial discovery consultation, we align on your priorities—whether that is architectural floral staging, celebrity artists, or Michelin-standard catering—and formulate an itemized proposal tailored to your investment.',
-    },
-    {
-      q: 'Do you offer end-to-end management or can we choose specific services?',
-      a: 'We specialize in turnkey end-to-end event management because comprehensive control guarantees seamless timing and unified design. However, for corporate organizations or institutional clients with in-house teams, we offer modular production management (stage design, AV/lighting rigging, or artist curation).',
-    },
-    {
-      q: 'How do you handle unexpected weather or technical emergencies?',
-      a: 'Every Adi Reddy production includes a rigorous contingency blueprint: secondary diesel generators for zero-downtime power redundancy, weatherproof rigging, on-standby technical crews, and certified fire safety compliance.',
-    },
+    { q: "How far ahead should I book?", a: "For large weddings and productions, 6–9 months is ideal. Smaller celebrations can often be planned in 2–4 months." },
+    { q: "Do you work outside Hyderabad?", a: "Yes. We produce events across India and can discuss destination events during your consultation." },
+    { q: "Can you work within my budget?", a: "Yes. We shape the event plan around your priorities and share an itemized proposal before booking." },
   ];
 
   return (
@@ -39,7 +22,7 @@ export default function ServicesFAQ() {
         <SectionHeading
           eyebrow="Client Inquiries"
           title="Frequently Addressed Questions"
-          description="Everything you need to know about commissioning Adi Reddy Events for your upcoming milestone."
+          description="A few quick answers before you get in touch."
           align="center"
           className="mb-14"
         />

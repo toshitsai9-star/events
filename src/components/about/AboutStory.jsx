@@ -1,5 +1,4 @@
 import React from 'react';
-import { Quote } from 'lucide-react';
 
 /**
  * AboutStory
@@ -27,22 +26,11 @@ export default function AboutStory() {
 
             <div className="space-y-4 font-sans text-base sm:text-lg text-charcoal/80 leading-relaxed font-light">
               <p>
-                At Adi Reddy Events, we believe every occasion deserves to be celebrated in a special way. Whether it is a wedding, a birthday, a corporate gathering, a college celebration or a large-scale cultural event, our focus is on turning ideas into memorable experiences.
-              </p>
-              <p>
-                We bring creativity, thoughtful planning and attention to detail together to make every event meaningful.
-              </p>
-              <p>
-                From the first concept to the final execution, we aim to create experiences that people remember long after the celebration ends.
+                We bring each celebration from the first idea through planning and on-site production, with details shaped around the people and occasion.
               </p>
             </div>
 
-            <div className="pt-4 p-6 bg-beige/40 border-l-2 border-gold flex items-start space-x-4 shadow-subtle">
-              <Quote className="w-8 h-8 text-gold flex-shrink-0 mt-1" />
-              <p className="font-serif italic text-base sm:text-lg text-charcoal/90 leading-relaxed">
-                "Our focus is not on simply executing a schedule—it is about cultivating an atmosphere that leaves an indelible imprint in the memories of those who gather."
-              </p>
-            </div>
+            
           </div>
 
           {/* Complementary Photography Column */}
@@ -50,8 +38,8 @@ export default function AboutStory() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative z-10 overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[4/5]">
                 <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
-                  alt="Thoughtfully planned event atmosphere orchestrated by Adi Reddy Events"
+                  src="/videos/optimized/wedding-poster-720.jpg"
+                  alt="Real wedding celebration footage from Adi Reddy Events"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />

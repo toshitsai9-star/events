@@ -18,15 +18,10 @@ export default function GalleryContactHero() {
         <div className="gc-hero__content max-w-5xl">
           <span className="gc-hero__eyebrow"><Sparkles aria-hidden="true" /> Private event inquiries</span>
           <h1>Let's plan a day <em>worth remembering.</em></h1>
-          <p>Tell us what you're celebrating, and our team will help shape the details into an experience that feels entirely yours.</p>
+          <p>Tell us what you're planning, and we'll get back to you.</p>
           <a className="gc-hero__action" href="#contact-enquiry" onClick={scrollToForm}>
             Start your inquiry <ArrowDownRight aria-hidden="true" />
           </a>
-          <div className="gc-hero__notes">
-            <span><b>01</b> Thoughtful planning</span>
-            <i aria-hidden="true" />
-            <span><b>02</b> Personal response</span>
-          </div>
         </div>
       </div>
     </section>
