@@ -1836,3 +1836,9 @@ canvas {
     bottom: auto;
   }
 }
+
+/* Contact page has its own component tokens; route typography takes precedence there too. */
+.page-route--contact .gallery-contact-page {
+  --gc-serif: var(--font-heading);
+  --gc-sans: var(--font-body);
+}
