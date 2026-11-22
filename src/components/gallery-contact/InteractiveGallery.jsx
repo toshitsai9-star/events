@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SectionHeading from '../SectionHeading';
-import { Camera, X, ChevronLeft, ChevronRight, ArrowUpRight, MapPin, Sparkles } from 'lucide-react';
+import { Camera, X, ChevronLeft, ChevronRight, ArrowUpRight, MapPin } from 'lucide-react';
 
 /**
  * InteractiveGallery
  * Comprehensive photo gallery representing all 9 event disciplines.
  * Features:
- * - Category filtering (All Events, Weddings, Birthdays, Corporate, College, Cultural, Concerts, Private, Exhibitions)
  * - Editorial masonry-style layout with varying image proportions
  * - Responsive design with subtle hover zoom and metadata overlays
  * - Interactive lightbox with previous/next navigation, keyboard controls, and category enquiry handoff
  * - Clear illustrative-image disclosure
  */
 export default function InteractiveGallery() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const galleryItems = [
@@ -195,17 +193,7 @@ export default function InteractiveGallery() {
     },
   ];
 
-  const filterCategories = [
-    { key: 'all', label: 'All Events' },
-    { key: 'weddings', label: 'Weddings' },
-    { key: 'birthdays', label: 'Birthdays' },
-    { key: 'corporate', label: 'Corporate Events' },
-    { key: 'college', label: 'College Events' },
-    { key: 'cultural', label: 'Cultural Events' },
-    { key: 'concerts', label: 'Concerts' },
-    { key: 'private', label: 'Private Parties' },
-    { key: 'exhibitions', label: 'Exhibitions' },
-  ];
+
 
   // If a remote gallery photograph is unavailable, use an included local event
   // still so the card and lightbox never display an empty white image area.
@@ -226,9 +214,7 @@ export default function InteractiveGallery() {
     image.src = localFallbacks[item.category] || '/videos/portfolio/film1_poster.jpg';
   };
 
-  const filteredItems = activeCategory === 'all'
-    ? galleryItems
-    : galleryItems.filter((item) => item.category === activeCategory);
+  const filteredItems = galleryItems;
 
   // Lightbox Navigation Functions
   const handlePrev = useCallback(() => {
@@ -273,27 +259,6 @@ export default function InteractiveGallery() {
           align="center"
           className="mb-12 md:mb-14"
         />
-
-        {/* Filter Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-14">
-          {filterCategories.map((cat) => (
-            <button
-              key={cat.key}
-              type="button"
-              onClick={() => {
-                setActiveCategory(cat.key);
-                setLightboxIndex(null);
-              }}
-              className={`px-4 sm:px-5 py-2.5 text-xs uppercase tracking-[0.16em] font-sans transition-all duration-300 ${
-                activeCategory === cat.key
-                  ? 'bg-crimson text-white border border-crimson shadow-subtle'
-                  : 'bg-ivory text-charcoal/80 border border-gold/25 hover:border-gold hover:text-charcoal'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
 
         {/* Editorial Masonry-Style Grid with Staggered Scroll Reveal */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">

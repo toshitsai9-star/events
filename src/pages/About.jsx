@@ -5,7 +5,6 @@ import WhatWeDo from '../components/about/WhatWeDo';
 import AboutPhilosophy from '../components/about/AboutPhilosophy';
 import PlanningApproach from '../components/about/PlanningApproach';
 import WhyChooseAdhiReddy from '../components/about/WhyChooseAdhiReddy';
-import AboutVisualShowcase from '../components/about/AboutVisualShowcase';
 import AboutCTA from '../components/about/AboutCTA';
 
 /**
@@ -34,9 +33,6 @@ export default function About() {
 
       {/* 6. Why Choose Adi Reddy Events: "Why Choose Us for Your Next Event?" */}
       <WhyChooseAdhiReddy />
-
-      {/* 7. Visual Showcase: "Different Occasions. Endless Memories." */}
-      <AboutVisualShowcase />
 
       {/* 8. Final Call to Action (Forest Green Background) */}
       <AboutCTA />

@@ -1,6 +1,6 @@
 /* No blur, fade, or mask effects on the founder. Edge quality comes from the video matte. */
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, X } from 'lucide-react';
 import EntryGate from './EntryGate';
 import WebGLAvatarMatte from './WebGLAvatarMatte';
 
@@ -17,6 +17,8 @@ import WebGLAvatarMatte from './WebGLAvatarMatte';
  * 5. Optional Entry Gate (ENTRY_GATE, default true): Luxury welcome overlay in warm cream/serif style
  *    with "Enter Experience" and "Enter without sound". Skipped if Step 1 succeeds or if previously entered.
  */
+const AUDIO_PROMPT_KEY = 'adi-reddy-founder-audio-choice';
+
 export default function LipSyncAvatar({
   videoSource = '/founder-intro-video.mp4',
   founderName = 'Anil Reddy',
@@ -32,13 +34,30 @@ export default function LipSyncAvatar({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
   const [showEntryGate, setShowEntryGate] = useState(false);
+  const [showAudioPrompt, setShowAudioPrompt] = useState(() => {
+    try {
+      return typeof window === 'undefined' || window.sessionStorage.getItem(AUDIO_PROMPT_KEY) !== 'chosen';
+    } catch {
+      return true;
+    }
+  });
   const [hasFirstFramePlayed, setHasFirstFramePlayed] = useState(false);
 
   const mediaRef = useRef(null);
   const hasAttemptedAutoplayRef = useRef(false);
 
+  const dismissAudioPrompt = useCallback(() => {
+    setShowAudioPrompt(false);
+    try {
+      window.sessionStorage.setItem(AUDIO_PROMPT_KEY, 'chosen');
+    } catch {
+      // The prompt still dismisses for the current page if session storage is unavailable.
+    }
+  }, []);
+
   // Start or unmute from the current point; a sound-control click must not restart the video.
   const unlockWithSound = useCallback((fromBeginning = false) => {
+    dismissAudioPrompt();
     const video = mediaRef.current;
     if (!video) return;
 
@@ -71,7 +90,7 @@ export default function LipSyncAvatar({
       setIsMuted(true);
       setSoundState('sound-blocked');
     });
-  }, []);
+  }, [dismissAudioPrompt]);
 
   // STEP 1 & 2: STATE MACHINE RUN ON EVERY PAGE LOAD INCLUDING RELOADS
   useEffect(() => {
@@ -92,6 +111,7 @@ export default function LipSyncAvatar({
           setIsMuted(false);
           setSoundState('playing-with-sound');
           setShowEntryGate(false);
+          dismissAudioPrompt();
         })
         .catch(async () => {
           // Browsers may block audible autoplay. Keep the original clip playing
@@ -119,32 +139,9 @@ export default function LipSyncAvatar({
     };
     window.addEventListener('pageshow', handlePageShow);
     return () => window.removeEventListener('pageshow', handlePageShow);
-  }, [entryGateEnabled]);
+  }, [entryGateEnabled, dismissAudioPrompt]);
 
-  // Browsers may reject audible autoplay until the visitor gestures. Keep
-  // muted autoplay as the fallback, then resume the same video with audio on
-  // the first real tap or keyboard interaction anywhere on the page.
-  useEffect(() => {
-    if (soundState !== 'sound-blocked') return undefined;
 
-    const video = mediaRef.current;
-    if (!video || video.paused || !video.muted) return undefined;
-
-    const unlockOnFirstGesture = () => {
-      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
-      window.removeEventListener('keydown', unlockOnFirstGesture, true);
-      // Start from the opening line so the visitor hears the complete introduction.
-      unlockWithSound(true);
-    };
-
-    window.addEventListener('pointerdown', unlockOnFirstGesture, true);
-    window.addEventListener('keydown', unlockOnFirstGesture, true);
-
-    return () => {
-      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
-      window.removeEventListener('keydown', unlockOnFirstGesture, true);
-    };
-  }, [soundState, unlockWithSound]);
 
   // SCROLL VISIBILITY MANAGEMENT
   useEffect(() => {
@@ -192,6 +189,7 @@ export default function LipSyncAvatar({
 
   // 4. Clicking "ENTER EXPERIENCE" (synchronous execution, no await before play)
   const handleGateEnterWithSound = () => {
+    dismissAudioPrompt();
     const video = mediaRef.current;
     if (!video) return;
 
@@ -229,6 +227,7 @@ export default function LipSyncAvatar({
 
   // 5. "ENTER WITHOUT SOUND" keeps the video muted and shows the mute/unmute toggle in the "muted" state
   const handleGateEnterWithoutSound = () => {
+    dismissAudioPrompt();
     const video = mediaRef.current;
     if (video) {
       video.muted = true;
@@ -264,6 +263,43 @@ export default function LipSyncAvatar({
           onEnterWithoutSound={handleGateEnterWithoutSound}
           onDismiss={handleGateDismiss}
         />
+      )}
+
+      {showAudioPrompt && !showEntryGate && soundState !== 'playing-with-sound' && (
+        <aside
+          className="founder-audio-prompt absolute left-4 right-4 top-20 z-40 mx-auto sm:left-auto sm:right-8 sm:top-24 sm:mx-0"
+          role="dialog"
+          aria-label="Listen to the founder's welcome"
+        >
+          <div className="rounded-xl border border-[#B49A70]/70 bg-[#F8F6F1]/96 p-4 text-[#171717] shadow-[0_18px_48px_rgba(6,17,12,.22)] backdrop-blur-md">
+            <div className="flex items-start gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#06110C] text-[#D4B982]">
+                <Sparkles className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="block text-[9px] font-semibold uppercase tracking-[.2em] text-[#9A8059]">A greeting from Anil</span>
+                <p className="mt-1 font-serif text-lg leading-tight">Hear our founder’s welcome</p>
+                <p className="mt-1 text-xs leading-relaxed text-[#171717]/65">Turn on the video audio to hear his introduction.</p>
+              </div>
+              <button type="button" onClick={dismissAudioPrompt} className="rounded-full p-1 text-[#171717]/50 transition hover:bg-black/5 hover:text-[#171717]" aria-label="Close audio prompt">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="mt-3 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => unlockWithSound(true)}
+                className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md bg-[#9B1B1B] px-3 py-2 text-[10px] font-semibold uppercase tracking-[.13em] text-white transition hover:bg-[#7f1717] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A70]"
+              >
+                <Volume2 className="h-4 w-4" aria-hidden="true" />
+                Hear his message
+              </button>
+              <button type="button" onClick={dismissAudioPrompt} className="px-2 py-2 text-[9px] font-semibold uppercase tracking-[.1em] text-[#171717]/55 transition hover:text-[#171717]">
+                Keep muted
+              </button>
+            </div>
+          </div>
+        </aside>
       )}
 
       {/* 

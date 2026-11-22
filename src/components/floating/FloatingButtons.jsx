@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowUp, ArrowRight, Calendar, MessageCircle, Sparkles, X } from 'lucide-react';
+import { ArrowRight, Calendar, X } from 'lucide-react';
 
 /**
  * FloatingButtons
- * Premium suite of floating action controls across all pages:
- * 1. Floating WhatsApp Contact Button (Bottom-Right)
- * 2. Floating Back-to-Top Button (Stacked above WhatsApp, reveals after 380px scroll)
- * 3. Floating "Plan Your Event" Enquiry CTA Pill (Bottom-Left, deep-links to enquiry form)
+ * Floating WhatsApp contact and event enquiry controls shared across the site.
  *
  * Designed with safe margins, zero overlap, touch accessibility, and reduced-motion awareness.
  */
 export default function FloatingButtons() {
   const [scrollY, setScrollY] = useState(0);
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [showConsultationModal, setShowConsultationModal] = useState(false);
   const location = useLocation();
@@ -35,7 +31,6 @@ export default function FloatingButtons() {
         window.requestAnimationFrame(() => {
           const currentY = window.scrollY;
           setScrollY(currentY);
-          setShowBackToTop(currentY > 380);
           ticking = false;
         });
         ticking = true;
@@ -111,7 +106,6 @@ export default function FloatingButtons() {
           <span className="font-sans text-xs uppercase tracking-[0.18em] font-medium text-ivory whitespace-nowrap">
             Plan Your Event
           </span>
-          <Sparkles className="w-3 h-3 text-gold-light opacity-80 transition-transform duration-300 group-hover:scale-110" />
         </button>
       </div>
 
@@ -155,10 +149,7 @@ export default function FloatingButtons() {
         </div>
       )}
 
-      {/* ==================================================
-          2 & 3. FLOATING RIGHT COLUMN (BACK-TO-TOP & WHATSAPP)
-          Positioned bottom-right with non-overlapping vertical flex stack
-          ================================================== */}
+      {/* Floating WhatsApp contact button */}
       <aside
         aria-label="Quick Actions"
         className={`floating-quick-actions fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end space-y-3 transition-all duration-500 ease-out ${
@@ -167,20 +158,6 @@ export default function FloatingButtons() {
             : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
-        {/* Floating Back to Top Button */}
-        <button
-          type="button"
-          onClick={scrollToTop}
-          className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-forest text-ivory border border-gold/40 shadow-floating flex items-center justify-center transition-all duration-300 hover:bg-forest-light hover:border-gold hover:text-gold hover:-translate-y-0.5 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
-            showBackToTop
-              ? 'opacity-100 translate-y-0 pointer-events-auto'
-              : 'opacity-0 translate-y-3 pointer-events-none'
-          }`}
-          aria-label="Back to top"
-        >
-          <ArrowUp className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5" />
-        </button>
-
         {/* Floating WhatsApp Action Button */}
         <div className="relative flex items-center">
           {/* Tooltip on Hover / Focus */}

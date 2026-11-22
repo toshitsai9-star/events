@@ -4,6 +4,7 @@ import { useLanyardScrollTimeline } from '../../animations/useLanyardScrollTimel
 import HeroAvatar from './HeroAvatar';
 import LanyardBadge from './LanyardBadge';
 import { ArrowUpRight } from 'lucide-react';
+import { BrandMark } from '../BrandLogo';
 
 /**
  * AvatarHeroSection Component
@@ -174,9 +175,7 @@ export default function AvatarHeroSection({ config = avatarHeroConfig }) {
             href="/"
             className="group flex items-center space-x-3 focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-full bg-[#111111] text-[#F2F0E6] flex items-center justify-center font-bold text-xs tracking-wider shadow-sm group-hover:bg-[#3B2F8F] transition-colors duration-300">
-              {config.brand.initials}
-            </div>
+            <BrandMark className="w-9 h-9 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105" />
             <div className="flex flex-col">
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#111111] leading-none">
                 {config.brand.name}

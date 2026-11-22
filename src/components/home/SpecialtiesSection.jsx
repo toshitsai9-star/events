@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../SectionHeading';
+import { BrandMark } from '../BrandLogo';
 
 /**
  * SpecialtiesSection
@@ -228,7 +229,7 @@ export default function SpecialtiesSection() {
             return (
               <article key={item.id} className={`event-dossier event-dossier--${tone} reveal-init reveal-delay-${(idx % 3) * 100}`}>
                 <header className="event-dossier__masthead"><span>{item.tag}</span><span className="event-dossier__folio">{item.number}<i>/</i></span></header>
-                <div className="event-dossier__photo"><img src={item.image} alt={item.title} loading="lazy" /><span className="event-dossier__photo-caption">ADI REDDY EVENTS � HYDERABAD</span></div>
+                <div className="event-dossier__photo"><img src={item.image} alt={item.title} loading="lazy" /><span className="event-dossier__photo-caption"><BrandMark className="event-dossier__brand-mark" /> <span>ADI REDDY EVENTS · HYDERABAD</span></span></div>
                 <div className="event-dossier__copy">
                   <span className="event-dossier__eyebrow">{item.eyebrow}</span>
                   <h3>{item.title}</h3>

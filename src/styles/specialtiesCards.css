@@ -174,3 +174,40 @@
 @media (prefers-reduced-motion: reduce) {
   .event-dossier, .event-dossier * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* The six main event folios form a balanced 3 × 2 gallery on desktop. */
+.event-dossier-grid {
+  width: min(100%, 1080px);
+  max-width: 1080px;
+  margin-inline: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: clamp(14px, 1.5vw, 22px);
+}
+.event-dossier {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border-radius: 20px 4px 20px 4px !important;
+}
+.event-dossier__photo { height: clamp(155px, 15vw, 205px); }
+.event-dossier__photo-caption { display: inline-flex; align-items: center; gap: 5px; }
+.event-dossier__brand-mark { width: 14px; height: 14px; }
+.event-dossier__copy { display: flex; flex: 1; flex-direction: column; }
+.event-dossier__link { margin-top: auto; }
+@media (max-width: 1000px) {
+  .event-dossier-grid { width: min(100%, 800px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .event-dossier__photo { height: clamp(160px, 23vw, 195px); }
+}
+@media (max-width: 620px) {
+  .event-dossier-grid { width: min(100%, 420px); grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  .event-dossier { padding: 8px 8px 0; border-radius: 16px 4px 16px 4px !important; }
+  .event-dossier__photo { height: 138px; margin-top: 7px; }
+  .event-dossier__copy { padding: 12px 3px 12px; }
+  .event-dossier__copy h3 { font-size: 1.3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-dossier, .event-dossier * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
