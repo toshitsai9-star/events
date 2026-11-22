@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import '../../styles/servicesMobileCards.css';
 import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../SectionHeading';
@@ -10,6 +11,7 @@ import SectionHeading from '../SectionHeading';
  * curated luxury photography, dedicated service checklists, and deep-linked category enquiry triggers.
  */
 export default function ServicesShowcase() {
+  const [expandedCategory, setExpandedCategory] = useState('weddings');
   const categories = [
     {
       id: 'weddings',
@@ -212,6 +214,7 @@ export default function ServicesShowcase() {
               <a
                 key={cat.id}
                 href={`#category-${cat.id}`}
+                onClick={() => setExpandedCategory(cat.id)}
                 className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-beige/40 hover:bg-forest hover:text-ivory border border-gold/30 text-[11px] font-sans uppercase tracking-wider text-charcoal/80 transition-colors duration-200"
               >
                 <span className="number-display text-gold font-semibold">{cat.number}</span>
@@ -230,8 +233,21 @@ export default function ServicesShowcase() {
               <div
                 key={cat.id}
                 id={`category-${cat.id}`}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center group scroll-mt-28 reveal-init"
+                className="service-category grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center group scroll-mt-28 reveal-init"
+                data-mobile-expanded={expandedCategory === cat.id}
               >
+                <button
+                  type="button"
+                  className="service-category__mobile-toggle"
+                  aria-expanded={expandedCategory === cat.id}
+                  aria-controls={`category-details-${cat.id}`}
+                  onClick={() => setExpandedCategory((open) => open === cat.id ? null : cat.id)}
+                >
+                  <span className="service-category__mobile-number">{cat.number}</span>
+                  <span className="service-category__mobile-title">{cat.title}</span>
+                  <span className="service-category__mobile-symbol" aria-hidden="true">{expandedCategory === cat.id ? '−' : '+'}</span>
+                </button>
+                <div id={`category-details-${cat.id}`} className="service-category__details">
                 {/* Image Column: Combination of Large and Small Images */}
                 <div
                   className={`lg:col-span-6 ${
@@ -343,6 +359,7 @@ export default function ServicesShowcase() {
                       Adi Reddy Events
                     </span>
                   </div>
+                </div>
                 </div>
               </div>
             );
