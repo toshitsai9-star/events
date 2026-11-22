@@ -94,19 +94,15 @@ export default function LipSyncAvatar({
           setShowEntryGate(false);
         })
         .catch(async () => {
-          // Browsers may block audible autoplay. Keep the original clip playing
-          // silently and let the top-right control request sound on a tap.
+          // Browsers may block audible autoplay. Stop playback and show the
+          // entry gate so the visitor can explicitly start the voice with a tap.
           video.currentTime = 0;
+          video.pause();
           video.muted = true;
           setIsMuted(true);
           setSoundState('sound-blocked');
-          try {
-            await video.play();
-            setIsPlaying(true);
-          } catch {
-            setIsPlaying(false);
-          }
-          if (entryGateEnabled) setShowEntryGate(true);
+          setIsPlaying(false);
+          setShowEntryGate(entryGateEnabled);
         });
     };
 
@@ -120,30 +116,6 @@ export default function LipSyncAvatar({
     window.addEventListener('pageshow', handlePageShow);
     return () => window.removeEventListener('pageshow', handlePageShow);
   }, [entryGateEnabled]);
-
-  // Browsers may reject audible autoplay until the visitor gestures. Keep
-  // muted autoplay as the fallback, then resume the same video with audio on
-  // the first real tap or keyboard interaction anywhere on the page.
-  useEffect(() => {
-    if (soundState !== 'sound-blocked') return undefined;
-
-    const video = mediaRef.current;
-    if (!video || video.paused || !video.muted) return undefined;
-
-    const unlockOnFirstGesture = () => {
-      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
-      window.removeEventListener('keydown', unlockOnFirstGesture, true);
-      unlockWithSound(false);
-    };
-
-    window.addEventListener('pointerdown', unlockOnFirstGesture, true);
-    window.addEventListener('keydown', unlockOnFirstGesture, true);
-
-    return () => {
-      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
-      window.removeEventListener('keydown', unlockOnFirstGesture, true);
-    };
-  }, [soundState, unlockWithSound]);
 
   // SCROLL VISIBILITY MANAGEMENT
   useEffect(() => {
