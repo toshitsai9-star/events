@@ -278,8 +278,8 @@ export default function LipSyncAvatar({
               </span>
               <div className="min-w-0 flex-1">
                 <span className="block text-[9px] font-semibold uppercase tracking-[.2em] text-[#9A8059]">A greeting from Anil</span>
-                <p className="mt-1 font-serif text-lg leading-tight">Hear our founder’s welcome</p>
-                <p className="mt-1 text-xs leading-relaxed text-[#171717]/65">Turn on the video audio to hear his introduction.</p>
+                <p className="mt-1 font-serif text-lg leading-tight">Hear our founder’s words</p>
+                <p className="mt-1 text-xs leading-relaxed text-[#171717]/65">Tap to listen to Anil’s welcome.</p>
               </div>
               <button type="button" onClick={dismissAudioPrompt} className="rounded-full p-1 text-[#171717]/50 transition hover:bg-black/5 hover:text-[#171717]" aria-label="Close audio prompt">
                 <X className="h-4 w-4" />
@@ -292,7 +292,7 @@ export default function LipSyncAvatar({
                 className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md bg-[#9B1B1B] px-3 py-2 text-[10px] font-semibold uppercase tracking-[.13em] text-white transition hover:bg-[#7f1717] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A70]"
               >
                 <Volume2 className="h-4 w-4" aria-hidden="true" />
-                Hear his message
+                Listen to Anil
               </button>
               <button type="button" onClick={dismissAudioPrompt} className="px-2 py-2 text-[9px] font-semibold uppercase tracking-[.1em] text-[#171717]/55 transition hover:text-[#171717]">
                 Keep muted

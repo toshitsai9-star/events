@@ -1842,3 +1842,20 @@ canvas {
   --gc-serif: var(--font-heading);
   --gc-sans: var(--font-body);
 }
+
+@media (max-width: 640px) {
+  .founder-audio-prompt {
+    width: min(280px, calc(100vw - 2rem));
+    left: 16px;
+    right: auto;
+    margin: 0;
+    top: 130px;
+    bottom: auto;
+  }
+  .founder-audio-prompt > div { padding: 10px; }
+  .founder-audio-prompt > div > div:first-child > span:first-child { width: 30px; height: 30px; }
+  .founder-audio-prompt > div > div:first-child > div > p:first-of-type { font-size: 15px; }
+  .founder-audio-prompt > div > div:last-child { margin-top: 9px; }
+  .founder-audio-prompt > div > div:last-child button:first-child { min-height: 36px; padding-top: 6px; padding-bottom: 6px; font-size: 9px; }
+  .founder-audio-prompt > div > div:last-child button:last-child { padding-inline: 6px; font-size: 8px; }
+}

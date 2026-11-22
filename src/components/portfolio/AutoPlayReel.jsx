@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
-import { REEL_PAUSE_EVENT, REEL_PLAY_EVENT } from '../../utilities/reelPlayback';
+import { REEL_PAUSE_EVENT, REEL_PLAY_EVENT, requestReelPlayback } from '../../utilities/reelPlayback';
 
 export default function AutoPlayReel({ src, poster, title, className = '' }) {
   const videoRef = useRef(null);
@@ -10,9 +10,12 @@ export default function AutoPlayReel({ src, poster, title, className = '' }) {
     const video = videoRef.current;
     if (!video) return undefined;
 
+    const touchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.intersectionRatio < 0.15) {
         video.pause();
+      } else if (touchDevice && entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+        requestReelPlayback(video);
       }
     }, { threshold: [0, 0.15, 0.55] });
 

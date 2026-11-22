@@ -223,7 +223,7 @@ export default function SpecialtiesSection() {
         </div>
 
         {/* Six event dossiers in a framed editorial gallery */}
-        <div className="event-dossier-grid">
+        <div className="event-dossier-grid" role="region" aria-label="More event specialties" tabIndex={0}>
           {categories.slice(2).map((item, idx) => {
             const tone = ['ivory', 'forest', 'sand', 'ink', 'paper', 'forest'][idx];
             return (

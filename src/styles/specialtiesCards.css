@@ -153,17 +153,57 @@
   .event-dossier__photo { height: clamp(180px, 26vw, 230px); }
 }
 @media (max-width: 620px) {
-  .event-dossier-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; width: 100%; max-width: 440px; }
-  .event-dossier { padding: 9px 9px 0; border-radius: 18px 4px 18px 4px !important; }
-  .event-dossier__masthead { height: 36px; padding-bottom: 7px; font-size: 7px; letter-spacing: .13em; }
-  .event-dossier__folio { font-size: 1.8rem; }
-  .event-dossier__photo { height: 150px; margin-top: 8px; padding: 4px; border-radius: 12px 3px 12px 3px; }
-  .event-dossier__copy { padding: 13px 3px 13px; }
-  .event-dossier__eyebrow { margin-bottom: 5px; font-size: 7px; letter-spacing: .14em; }
-  .event-dossier__copy h3 { max-width: 100%; margin-bottom: 6px; font-size: 1.38rem; }
-  .event-dossier__copy>p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; margin-bottom: 8px; font-size: 10px; line-height: 1.5; }
-  .event-dossier__copy ul { grid-template-columns: 1fr; gap: 4px; margin-bottom: 9px; padding: 8px 0; }
-  .event-dossier__copy li { font-size: 8px; }
+  /* Six event types remain available as a compact, swipeable rail on phones. */
+  .event-dossier-grid {
+    display: flex;
+    width: calc(100% + 32px);
+    max-width: none;
+    margin: 0 -16px;
+    padding: 0 16px 10px;
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(180, 154, 112, .55) transparent;
+  }
+  .event-dossier {
+    flex: 0 0 min(82vw, 315px);
+    width: min(82vw, 315px);
+    max-width: 315px;
+    height: auto;
+    min-height: 0;
+    padding: 8px 8px 0;
+    border-radius: 16px 4px 16px 4px !important;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .event-dossier__masthead { height: 34px; padding-bottom: 6px; font-size: 7px; letter-spacing: .13em; }
+  .event-dossier__folio { font-size: 1.65rem; }
+  .event-dossier__photo { height: 118px; margin-top: 6px; padding: 4px; border-radius: 11px 3px 11px 3px; }
+  .event-dossier__copy { padding: 10px 3px 11px; }
+  .event-dossier__eyebrow { margin-bottom: 4px; font-size: 7px; letter-spacing: .13em; }
+  .event-dossier__copy h3 {
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    line-height: 1.12;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .event-dossier__copy>p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 7px;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+  .event-dossier__copy ul { display: none; }
   .event-dossier__side-label { display: none; }
   .event-dossier__link { font-size: 7.5px; }
 }
@@ -210,4 +250,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .event-dossier, .event-dossier * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .event-dossier { -webkit-tap-highlight-color: transparent; }
+  .event-dossier:active { transform: scale(.985); box-shadow: 0 12px 28px rgba(25, 24, 20, .15); }
+  .event-dossier-grid:focus-visible { outline: 2px solid #B49A70; outline-offset: 4px; }
 }
