@@ -208,25 +208,7 @@ export default function ServicesShowcase() {
           className="mb-12 md:mb-16"
         />
 
-        {/* Quick Category Anchor Bar */}
-        <div className="mb-20 md:mb-28 overflow-x-auto pb-3 scrollbar-thin">
-          <div className="flex items-center justify-start md:justify-center gap-2 sm:gap-2.5 min-w-max px-2">
-            {categories.map((cat) => (
-              <a
-                key={cat.id}
-                href={`#category-${cat.id}`}
-                onClick={() => {
-                  setShowAllMobileCategories(true);
-                  setExpandedCategory(cat.id);
-                }}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-beige/40 hover:bg-forest hover:text-ivory border border-gold/30 text-[11px] font-sans uppercase tracking-wider text-charcoal/80 transition-colors duration-200"
-              >
-                <span className="number-display text-gold font-semibold">{cat.number}</span>
-                <span>{cat.title.split(' ')[0]}</span>
-              </a>
-            ))}
-          </div>
-        </div>
+
 
         {/* Alternating Editorial Showcase for All 9 Categories */}
         <div className="space-y-28 md:space-y-40">
