@@ -11,6 +11,7 @@ import { BrandMark } from '../BrandLogo';
  * Designed as a high-end editorial alternating layout rather than repetitive cards.
  */
 export default function SpecialtiesSection() {
+  const [showMoreSpecialties, setShowMoreSpecialties] = React.useState(false);
   const categories = [
     {
       id: 'weddings',
@@ -222,8 +223,18 @@ export default function SpecialtiesSection() {
           ))}
         </div>
 
-        {/* Six event dossiers in a framed editorial gallery */}
-        <div className="event-dossier-grid" role="region" aria-label="More event specialties" tabIndex={0}>
+        <button
+          type="button"
+          className="event-dossier-more"
+          aria-expanded={showMoreSpecialties}
+          aria-controls="more-event-specialties"
+          onClick={() => setShowMoreSpecialties((visible) => !visible)}
+        >
+          {showMoreSpecialties ? 'Show fewer specialties' : 'Explore 6 more event types'}
+        </button>
+
+        {/* Six event dossiers are collapsed behind a mobile disclosure to keep the phone view focused. */}
+        <div id="more-event-specialties" className="event-dossier-grid" data-mobile-expanded={showMoreSpecialties} role="region" aria-label="More event specialties" tabIndex={0}>
           {categories.slice(2).map((item, idx) => {
             const tone = ['ivory', 'forest', 'sand', 'ink', 'paper', 'forest'][idx];
             return (
