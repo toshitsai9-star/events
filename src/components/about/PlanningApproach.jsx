@@ -53,7 +53,7 @@ export default function PlanningApproach() {
         />
 
         {/* 4-Step Horizontal Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <div className="workflow-step-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           
           {/* Subtle horizontal connecting line on desktop */}
           <div className="hidden lg:block absolute top-14 left-16 right-16 h-[1px] bg-gold/30 -z-0" />
@@ -63,7 +63,8 @@ export default function PlanningApproach() {
             return (
               <div
                 key={idx}
-                className={`reveal-init delay-${idx * 100} relative z-10 bg-ivory border border-gold/30 p-8 shadow-subtle flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-card group`}
+                className={`workflow-step-card reveal-init delay-${idx * 100} relative z-10 bg-ivory border border-gold/30 p-5 sm:p-6 lg:p-7 shadow-subtle flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-card group`}
+                data-step={`0${idx + 1}`}
               >
                 <div>
                   {/* Step Header */}

@@ -24,7 +24,7 @@ export default function useScrollReveal() {
       }
     });
 
-    document.querySelectorAll('main section .grid > *, main section [data-motion="reveal"], footer').forEach((el, index) => {
+    document.querySelectorAll('main section .grid > *, main section .event-dossier, main section [data-motion="reveal"], footer').forEach((el, index) => {
       if (el.matches('.group, article, a[href], [data-motion="reveal"]')) {
         el.classList.add('site-card-motion');
       }
