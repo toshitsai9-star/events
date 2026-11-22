@@ -11,7 +11,8 @@ import SectionHeading from '../SectionHeading';
  * curated luxury photography, dedicated service checklists, and deep-linked category enquiry triggers.
  */
 export default function ServicesShowcase() {
-  const [expandedCategory, setExpandedCategory] = useState('weddings');
+  const [expandedCategory, setExpandedCategory] = useState(null);
+  const [showAllMobileCategories, setShowAllMobileCategories] = useState(false);
   const categories = [
     {
       id: 'weddings',
@@ -214,7 +215,10 @@ export default function ServicesShowcase() {
               <a
                 key={cat.id}
                 href={`#category-${cat.id}`}
-                onClick={() => setExpandedCategory(cat.id)}
+                onClick={() => {
+                  setShowAllMobileCategories(true);
+                  setExpandedCategory(cat.id);
+                }}
                 className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-beige/40 hover:bg-forest hover:text-ivory border border-gold/30 text-[11px] font-sans uppercase tracking-wider text-charcoal/80 transition-colors duration-200"
               >
                 <span className="number-display text-gold font-semibold">{cat.number}</span>
@@ -235,6 +239,7 @@ export default function ServicesShowcase() {
                 id={`category-${cat.id}`}
                 className="service-category grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center group scroll-mt-28 reveal-init"
                 data-mobile-expanded={expandedCategory === cat.id}
+                data-mobile-hidden={index >= 3 && !showAllMobileCategories}
               >
                 <button
                   type="button"
@@ -365,6 +370,15 @@ export default function ServicesShowcase() {
             );
           })}
         </div>
+
+        <button
+          type="button"
+          className="service-category__mobile-more"
+          aria-expanded={showAllMobileCategories}
+          onClick={() => setShowAllMobileCategories((visible) => !visible)}
+        >
+          {showAllMobileCategories ? 'Show fewer categories' : 'Explore all 9 event services'}
+        </button>
 
       </div>
     </section>

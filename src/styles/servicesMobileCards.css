@@ -1,8 +1,35 @@
 /* Mobile-only compact category cards for the Services page. */
-.service-category__mobile-toggle { display: none; }
+.service-category__mobile-toggle,
+.service-category__mobile-more { display: none; }
 .service-category__details { display: contents; }
 
 @media (max-width: 767px) {
+  #services-showcase .service-category[data-mobile-hidden="true"] {
+    display: none !important;
+  }
+
+  #services-showcase .service-category__mobile-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 14px;
+    padding: .75rem 1rem;
+    border: 1px solid rgba(181, 158, 120, .58);
+    background: transparent;
+    color: #17352b;
+    font: 600 11px/1.2 'Plus Jakarta Sans', Inter, sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #services-showcase .service-category__mobile-more:active {
+    background: #17352b;
+    color: #fbf9f5;
+  }
+
   #services-showcase .space-y-28 > .service-category + .service-category {
     margin-top: 12px !important;
   }
@@ -96,7 +123,8 @@
 }
 
 @media (min-width: 768px) {
-  .service-category__mobile-toggle { display: none !important; }
+  .service-category__mobile-toggle,
+  .service-category__mobile-more { display: none !important; }
   .service-category__details { display: contents !important; }
 }
 
