@@ -1824,3 +1824,15 @@ canvas {
   top: auto;
   bottom: clamp(1rem, 4vh, 2rem);
 }
+
+/* Keep the audio invitation inside the visible hero on every screen size. */
+.founder-audio-prompt {
+  top: auto;
+  bottom: calc(clamp(1rem, 4vh, 2rem) + 5.25rem);
+}
+@media (max-width: 640px) {
+  .founder-audio-prompt {
+    top: 130px;
+    bottom: auto;
+  }
+}
