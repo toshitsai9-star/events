@@ -17,8 +17,6 @@ import WebGLAvatarMatte from './WebGLAvatarMatte';
  * 5. Optional Entry Gate (ENTRY_GATE, default true): Luxury welcome overlay in warm cream/serif style
  *    with "Enter Experience" and "Enter without sound". Skipped if Step 1 succeeds or if previously entered.
  */
-const AUDIO_PROMPT_KEY = 'adi-reddy-founder-audio-choice';
-
 export default function LipSyncAvatar({
   videoSource = '/founder-intro-video.mp4',
   founderName = 'Anil Reddy',
@@ -34,13 +32,7 @@ export default function LipSyncAvatar({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
   const [showEntryGate, setShowEntryGate] = useState(false);
-  const [showAudioPrompt, setShowAudioPrompt] = useState(() => {
-    try {
-      return typeof window === 'undefined' || window.sessionStorage.getItem(AUDIO_PROMPT_KEY) !== 'chosen';
-    } catch {
-      return true;
-    }
-  });
+  const [showAudioPrompt, setShowAudioPrompt] = useState(true);
   const [hasFirstFramePlayed, setHasFirstFramePlayed] = useState(false);
 
   const mediaRef = useRef(null);
@@ -48,11 +40,6 @@ export default function LipSyncAvatar({
 
   const dismissAudioPrompt = useCallback(() => {
     setShowAudioPrompt(false);
-    try {
-      window.sessionStorage.setItem(AUDIO_PROMPT_KEY, 'chosen');
-    } catch {
-      // The prompt still dismisses for the current page if session storage is unavailable.
-    }
   }, []);
 
   // Start or unmute from the current point; a sound-control click must not restart the video.
