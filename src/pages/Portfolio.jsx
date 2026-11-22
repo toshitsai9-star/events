@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { 
   Play, 
@@ -326,7 +327,17 @@ export default function Portfolio() {
               >
                 {/* Video Thumbnail Viewport */}
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Open ${video.title} film`}
                   onClick={() => handleOpenVideo(video)}
+                  onKeyDown={(event) => {
+                    if (event.target.closest('button')) return;
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      handleOpenVideo(video);
+                    }
+                  }}
                   onMouseEnter={(event) => requestReelPlayback(event.currentTarget.querySelector('video'))}
                   className="film-card__media"
                 >
@@ -337,13 +348,6 @@ export default function Portfolio() {
                     className="film-card__autoplay"
                   />
                   <div className="film-card__scrim" />
-
-                  {/* Floating Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="film-card__play">
-                      <Play className="w-6 h-6 fill-charcoal translate-x-0.5" />
-                    </div>
-                  </div>
 
                   {/* Duration Badge */}
                   <div className="film-card__duration">
@@ -387,13 +391,9 @@ export default function Portfolio() {
 
                   {/* Card Action Footer */}
                   <div className="film-card__footer">
-                    <button
-                      onClick={() => handleOpenVideo(video)}
-                      className="film-card__watch"
-                    >
-                      <span>Watch Video</span>
-                      <Play aria-hidden="true" />
-                    </button>
+                    <span className={`film-card__watch-hint ${isDarkCard ? 'text-gold-light/70' : 'text-charcoal/55'}`}>
+                      Tap reel to watch
+                    </span>
 
                     <Link
                       to="/gallery-contact"
@@ -412,7 +412,7 @@ export default function Portfolio() {
       </section>
 
       {/* 4. CINEMA MODAL LIGHTBOX */}
-      {selectedVideo && (
+      {selectedVideo && createPortal((
         <div 
           className="cinema-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/95 backdrop-blur-lg animate-fadeIn"
           role="dialog"
@@ -520,7 +520,7 @@ export default function Portfolio() {
 
           </div>
         </div>
-      )}
+      ), document.body)}
 
       {/* 5. CLOSING CALL TO ACTION BANNER */}
       <section className="py-16 md:py-24 bg-forest text-ivory border-t border-gold/20 text-center">
