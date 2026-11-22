@@ -121,6 +121,30 @@ export default function LipSyncAvatar({
     return () => window.removeEventListener('pageshow', handlePageShow);
   }, [entryGateEnabled]);
 
+  // Browsers may reject audible autoplay until the visitor gestures. Keep
+  // muted autoplay as the fallback, then resume the same video with audio on
+  // the first real tap or keyboard interaction anywhere on the page.
+  useEffect(() => {
+    if (soundState !== 'sound-blocked') return undefined;
+
+    const video = mediaRef.current;
+    if (!video || video.paused || !video.muted) return undefined;
+
+    const unlockOnFirstGesture = () => {
+      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
+      window.removeEventListener('keydown', unlockOnFirstGesture, true);
+      unlockWithSound(false);
+    };
+
+    window.addEventListener('pointerdown', unlockOnFirstGesture, true);
+    window.addEventListener('keydown', unlockOnFirstGesture, true);
+
+    return () => {
+      window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
+      window.removeEventListener('keydown', unlockOnFirstGesture, true);
+    };
+  }, [soundState, unlockWithSound]);
+
   // SCROLL VISIBILITY MANAGEMENT
   useEffect(() => {
     const video = mediaRef.current;
@@ -401,3 +425,4 @@ export default function LipSyncAvatar({
     </>
   );
 }
+
