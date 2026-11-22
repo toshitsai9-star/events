@@ -271,7 +271,7 @@ export default function LipSyncAvatar({
           role="dialog"
           aria-label="Listen to the founder's welcome"
         >
-          <div className="rounded-xl border border-[#B49A70]/70 bg-[#F8F6F1]/96 p-4 text-[#171717] shadow-[0_18px_48px_rgba(6,17,12,.22)] backdrop-blur-md">
+          <div className="rounded-xl border border-[#B49A70]/70 bg-[#F8F6F1]/96 p-4 text-[#171717] shadow-[0_18px_48px_rgba(6,17,12,.22)]">
             <div className="flex items-start gap-3">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#06110C] text-[#D4B982]">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
