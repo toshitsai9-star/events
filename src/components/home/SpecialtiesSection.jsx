@@ -155,13 +155,13 @@ export default function SpecialtiesSection() {
         />
 
         {/* Featured Showcase: 2 Marquee Categories in Large Editorial Format */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="featured-specialty-grid grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8 mb-10 md:mb-12">
           {categories.slice(0, 2).map((item) => (
             <div
               key={item.id}
               className="group bg-ivory border border-gold/30 shadow-card overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-gold hover:-translate-y-1 reveal-init"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-beige">
+              <div className="relative aspect-[16/9] sm:aspect-[16/10] overflow-hidden bg-beige">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -177,19 +177,19 @@ export default function SpecialtiesSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
+              <div className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
                 <div>
                   <span className="text-[11px] uppercase tracking-[0.25em] text-gold font-sans font-medium block mb-2">
                     {item.eyebrow}
                   </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-charcoal group-hover:text-forest transition-colors">
+                  <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-charcoal group-hover:text-forest transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-sans text-sm text-charcoal/75 leading-relaxed mt-3">
+                  <p className="font-sans text-[13px] sm:text-sm text-charcoal/75 leading-relaxed mt-2 sm:mt-3">
                     {item.description}
                   </p>
 
-                  <div className="mt-5 pt-4 border-t border-gold/20">
+                  <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-gold/20">
                     <span className="text-[10px] uppercase tracking-widest text-gold font-sans font-semibold block mb-2">
                       Key Capabilities:
                     </span>
@@ -204,7 +204,7 @@ export default function SpecialtiesSection() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gold/15 flex items-center justify-between">
+                <div className="pt-3 sm:pt-4 border-t border-gold/15 flex items-center justify-between">
                   <Link
                     to="/gallery-contact"
                     className="inline-flex items-center text-xs uppercase tracking-[0.18em] font-sans font-medium text-crimson hover:text-crimson-hover transition-colors group/link"

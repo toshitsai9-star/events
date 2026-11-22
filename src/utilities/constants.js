@@ -15,7 +15,7 @@ export const NAV_LINKS = [
   { name: 'About Us', path: '/about' },
   { name: 'Services', path: '/services' },
   { name: 'Our Work', path: '/our-work' },
-  { name: 'Gallery & Contact', path: '/gallery-contact' },
+  { name: 'Contact', path: '/gallery-contact' },
 ];
 
 export const BRAND_COLORS = {

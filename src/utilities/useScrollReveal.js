@@ -34,6 +34,10 @@ export default function useScrollReveal() {
       }
     });
 
+    document.querySelectorAll('header a[href], header button, main a[href], main button, footer a[href], footer button').forEach((el) => {
+      el.classList.add('site-action-motion');
+    });
+
     document.querySelectorAll('main section .grid').forEach((grid) => {
       Array.from(grid.children).forEach((card, index) => {
         card.style.setProperty('--motion-delay', `${Math.min(index, 5) * 75}ms`);
