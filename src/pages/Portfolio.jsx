@@ -15,7 +15,6 @@ import {
   Volume2,
   VolumeX,
   Camera,
-  CheckCircle2,
   Smartphone,
   Layers3,
   LayoutGrid
@@ -121,42 +120,34 @@ export default function Portfolio() {
             <span className="text-gold font-medium">Event Films</span>
           </nav>
 
-          <div className="max-w-3xl space-y-6 text-left">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 border border-gold/40 bg-beige/50 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-charcoal/80 font-sans">
-              <Film className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <span>Cinematic Production Archive • Adi Reddy Events</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-5 text-left">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 border border-gold/40 bg-beige/50 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-charcoal/80 font-sans">
+                <Film className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span>Event Films • Adi Reddy Events</span>
+              </div>
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-charcoal leading-[1.08] tracking-tight">
+                Moments Captured <br className="hidden sm:inline" />
+                <span className="italic font-light text-forest">in Motion.</span>
+              </h1>
+              <div className="w-16 h-[1px] bg-gold" />
+              <p className="font-sans text-base sm:text-lg text-charcoal/80 max-w-xl leading-relaxed font-light">
+                See how founder Anil Reddy and the team bring weddings, cultural celebrations, and live productions to life.
+              </p>
             </div>
-
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-charcoal leading-[1.08] tracking-tight">
-              Moments Captured <br className="hidden sm:inline" />
-              <span className="italic font-light text-forest">in Motion.</span>
-            </h1>
-
-            <div className="w-16 h-[1px] bg-gold" />
-
-            <p className="font-sans text-base sm:text-lg text-charcoal/80 max-w-2xl leading-relaxed font-light">
-              Step behind the scenes with founder Anil Reddy and experience the energy, 
-              intricate fabrication, and grandeur of our live event productions. 
-              From royal wedding mandaps and authentic cultural banquets to concert arenas, each film reflects our signature execution.
-            </p>
-
-            {/* Quick Stats Badges */}
-            <div className="pt-4 flex flex-wrap items-center gap-6 text-xs font-sans text-charcoal/70">
-              <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-gold" />
-                <span className="font-medium text-charcoal">Actual On-Site Footage</span>
-              </div>
-              <div className="w-[1px] h-4 bg-gold/30 hidden sm:block"></div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-gold" />
-                <span className="font-medium text-charcoal">Presented by Anil Reddy</span>
-              </div>
-              <div className="w-[1px] h-4 bg-gold/30 hidden sm:block"></div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-gold" />
-                <span className="font-medium text-charcoal">Turnkey Production</span>
-              </div>
-            </div>
+            {featuredVideo && (
+              <button type="button" onClick={() => handleOpenVideo(featuredVideo)}
+                className="group relative lg:col-span-5 w-full aspect-[16/10] lg:aspect-[4/5] overflow-hidden border border-gold/40 bg-forest shadow-card text-left"
+                aria-label={`Play featured film: ${featuredVideo.title}`}>
+                <img src={featuredVideo.posterUrl} alt={`${featuredVideo.categoryLabel} event film`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fetchPriority="high" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest/75 via-transparent to-forest/10" />
+                <span className="absolute left-4 bottom-4 inline-flex items-center gap-2 px-3 py-2 bg-forest/90 text-ivory text-[10px] uppercase tracking-[0.16em]">
+                  <Play className="w-3.5 h-3.5 fill-current text-gold" />Watch featured film
+                </span>
+                <span className="absolute top-4 right-4 px-2.5 py-1 bg-ivory/95 font-mono text-xs text-charcoal">{featuredVideo.duration}</span>
+              </button>
+            )}
           </div>
         </div>
       </section>

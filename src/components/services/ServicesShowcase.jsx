@@ -12,7 +12,7 @@ import SectionHeading from '../SectionHeading';
  */
 export default function ServicesShowcase() {
   const [expandedCategory, setExpandedCategory] = useState(null);
-  const [showAllMobileCategories, setShowAllMobileCategories] = useState(false);
+  const [showAllCategories, setShowAllMobileCategories] = useState(false);
   const categories = [
     {
       id: 'weddings',
@@ -221,7 +221,7 @@ export default function ServicesShowcase() {
                 id={`category-${cat.id}`}
                 className="service-category grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center group scroll-mt-28 reveal-init"
                 data-mobile-expanded={expandedCategory === cat.id}
-                data-mobile-hidden={index >= 3 && !showAllMobileCategories}
+                data-category-hidden={index >= 3 && !showAllCategories}
               >
                 <button
                   type="button"
@@ -356,10 +356,10 @@ export default function ServicesShowcase() {
         <button
           type="button"
           className="service-category__mobile-more"
-          aria-expanded={showAllMobileCategories}
+          aria-expanded={showAllCategories}
           onClick={() => setShowAllMobileCategories((visible) => !visible)}
         >
-          {showAllMobileCategories ? 'Show fewer categories' : 'Explore all 9 event services'}
+          {showAllCategories ? 'Show fewer categories' : 'View all 9 event services'}
         </button>
 
       </div>

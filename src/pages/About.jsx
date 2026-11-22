@@ -2,7 +2,6 @@ import React from 'react';
 import AboutHero from '../components/about/AboutHero';
 import AboutStory from '../components/about/AboutStory';
 import PlanningApproach from '../components/about/PlanningApproach';
-import WhyChooseAdhiReddy from '../components/about/WhyChooseAdhiReddy';
 import AboutCTA from '../components/about/AboutCTA';
 
 /**
@@ -19,9 +18,6 @@ export default function About() {
 
       {/* 5. Our Event Planning Approach: "From First Conversation to Final Celebration." */}
       <PlanningApproach />
-
-      {/* 6. Why Choose Adi Reddy Events: "Why Choose Us for Your Next Event?" */}
-      <WhyChooseAdhiReddy />
 
       {/* 8. Final Call to Action (Forest Green Background) */}
       <AboutCTA />
