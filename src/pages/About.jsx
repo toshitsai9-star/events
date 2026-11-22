@@ -1,17 +1,12 @@
 import React from 'react';
 import AboutHero from '../components/about/AboutHero';
 import AboutStory from '../components/about/AboutStory';
-import WhatWeDo from '../components/about/WhatWeDo';
-import AboutPhilosophy from '../components/about/AboutPhilosophy';
 import PlanningApproach from '../components/about/PlanningApproach';
 import WhyChooseAdhiReddy from '../components/about/WhyChooseAdhiReddy';
 import AboutCTA from '../components/about/AboutCTA';
 
 /**
- * About Page Component
- * Phase 3 Complete About Us Page for ADI REDDY EVENTS.
- * A comprehensive brand narrative presenting the vision, multi-category event scope,
- * philosophy, planning workflow, and visual showcase.
+ * About page focused on the company story, planning approach, and client benefits.
  */
 export default function About() {
   return (
@@ -21,12 +16,6 @@ export default function About() {
 
       {/* 2. Our Story: "More Than Just Event Planning." */}
       <AboutStory />
-
-      {/* 3. What We Do: "Celebrating Every Occasion, Big or Small." */}
-      <WhatWeDo />
-
-      {/* 4. Our Philosophy: "Every Event Is Unique. So Is Our Approach." */}
-      <AboutPhilosophy />
 
       {/* 5. Our Event Planning Approach: "From First Conversation to Final Celebration." */}
       <PlanningApproach />
