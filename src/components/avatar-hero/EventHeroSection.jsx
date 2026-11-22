@@ -11,11 +11,11 @@ import LipSyncAvatar from './LipSyncAvatar';
  * - 1. Warm Ivory Canvas: Matches the founder video studio backdrop (#F5F1E8 / #FAF8F5).
  * - 2. Oversized Background Typography: "ADI REDDY" & "EVENTS AND FACILITATORS" (perfectly calibrated so "A" and "Y" never clip into "DI EDD").
  * - 3. Left Introduction Editorial Column:
- *      - Kicker: "ADI REDDY EVENTS  FOUNDER"
+ *      - Kicker: "ADI REDDY EVENTS • FOUNDER"
  *      - Headline: "Meet Our Founder"
  *      - Name: "Anil Reddy"
  *      - Supporting Copy: "Creating memorable experiences through creativity, planning and exceptional event execution."
- *      - Spoken Telugu Transcript: "???? ????, ?? ???? ????? - ?????? ??? ??? ?????? ???????? & ?????????????."
+ *      - Spoken Telugu Transcript: "హాయ్ అండి, నా పేరు అనిల్ — ఫౌండర్ ఆఫ్ ఆది రెడ్డి ఈవెంట్స్ & ఫెసిలిటేటర్స్."
  * - 4. Center Stage Presenter:
  *      - Anil Reddy standing prominently in the center, speaking authentic Telugu with natural mouth sync & gestures.
  *      - Soft feathered vignette integration (sunk seamlessly into the background like Image 3, zero black borders, zero white halos, zero cutouts).
@@ -91,7 +91,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
         `,
       }}
     >
-      <h1 className="sr-only">ADI REDDY EVENTS &amp; FACILITATORS - Event Management in Hyderabad</h1>
+      <h1 className="sr-only">ADI REDDY EVENTS &amp; FACILITATORS — Event Management in Hyderabad</h1>
 
       {/* Subtle Luxury Film Grain Veil */}
       <div 
@@ -121,7 +121,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex items-center space-x-2 text-[11px] font-mono tracking-widest uppercase text-[#171717]/50">
             <span className="w-1.5 h-1.5 rounded-full bg-[#D6B879] animate-pulse" />
-            <span>HYDERABAD  GLOBAL</span>
+            <span>HYDERABAD • GLOBAL</span>
           </div>
           <a
             href="#contact"
@@ -239,7 +239,7 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
       <LipSyncAvatar
         videoSource="/founder-intro-video.mp4"
         founderName="Anil Reddy"
-        entryGateEnabled={!isGateSkipped}
+        entryGateEnabled={isGateSkipped ? false : (config?.entryGate?.enabled ?? true)}
         mousePos={mousePos}
         scrollY={scrollY}
         isLoaded={isLoaded}
@@ -249,4 +249,3 @@ export default function EventHeroSection({ config = eventHeroConfig }) {
     </section>
   );
 }
-
