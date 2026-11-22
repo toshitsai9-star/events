@@ -1778,3 +1778,47 @@ canvas {
 @media (prefers-reduced-motion: reduce) {
   .founder-audio-prompt { animation: none; }
 }
+
+
+/* Page-specific typography: distinct editorial pairings, shared brand colors. */
+.page-route--home {
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+}
+.page-route--about {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+.page-route--services {
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+.page-route--portfolio {
+  --font-heading: 'Bodoni Moda', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+}
+.page-route--contact {
+  --font-heading: 'Lora', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+.page-route--home,
+.page-route--about,
+.page-route--services,
+.page-route--portfolio,
+.page-route--contact { font-family: var(--font-body); }
+.page-route--home .font-serif,
+.page-route--about .font-serif,
+.page-route--services .font-serif,
+.page-route--portfolio .font-serif,
+.page-route--contact .font-serif { font-family: var(--font-heading); }
+.page-route--home .font-sans,
+.page-route--about .font-sans,
+.page-route--services .font-sans,
+.page-route--portfolio .font-sans,
+.page-route--contact .font-sans { font-family: var(--font-body); }
+
+/* Keep the founder sound invitation below the audio control, clear of the face. */
+.founder-audio-prompt {
+  top: auto;
+  bottom: clamp(1rem, 4vh, 2rem);
+}

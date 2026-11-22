@@ -19,7 +19,7 @@ import {
   Layers3,
   LayoutGrid
 } from 'lucide-react';
-import { PORTFOLIO_VIDEOS, VIDEO_CATEGORIES } from '../data/portfolioVideos';
+import { PORTFOLIO_VIDEOS } from '../data/portfolioVideos';
 import AutoPlayReel from '../components/portfolio/AutoPlayReel';
 import { pauseAllReels, requestReelPlayback } from '../utilities/reelPlayback';
 
@@ -31,7 +31,6 @@ import { pauseAllReels, requestReelPlayback } from '../utilities/reelPlayback';
  * Supports both vertical 9:16 reels and 16:9 landscape cinema films.
  */
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -43,11 +42,8 @@ export default function Portfolio() {
   // Featured video (first featured or first in list)
   const featuredVideo = PORTFOLIO_VIDEOS.find((v) => v.featured) || PORTFOLIO_VIDEOS[0];
 
-  // Show the featured film once in the spotlight. The category grid contains
-  // the remaining films until the visitor selects a specific category.
-  const filteredVideos = activeCategory === 'all'
-    ? PORTFOLIO_VIDEOS.filter((v) => v.id !== featuredVideo?.id)
-    : PORTFOLIO_VIDEOS.filter((v) => v.category === activeCategory);
+  // Show the featured film once in the spotlight, then list the other films.
+  const filteredVideos = PORTFOLIO_VIDEOS.filter((v) => v.id !== featuredVideo?.id);
 
   // Handle modal escape key and body scroll lock
   useEffect(() => {
@@ -165,7 +161,7 @@ export default function Portfolio() {
       </section>
 
       {/* 3. FEATURED SPOTLIGHT PRODUCTION */}
-      {featuredVideo && activeCategory === 'all' && (
+      {featuredVideo && (
         <section className="py-12 md:py-16 bg-[#06110C] text-ivory border-b border-gold/25">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-gold/20">
@@ -296,23 +292,6 @@ export default function Portfolio() {
               <LayoutGrid aria-hidden="true" /> Grid Spread
             </button>
           </div>
-        </div>
-
-        <div className="film-gallery__filters">
-            {VIDEO_CATEGORIES.map((cat) => (
-              <button
-                key={cat.key}
-                onClick={() => { setActiveCategory(cat.key); setHoveredVideoId(null); setPinnedVideoId(null); }}
-                className={`font-sans text-xs uppercase tracking-[0.14em] px-4 py-2 border transition-all duration-300 cursor-pointer ${
-                  activeCategory === cat.key
-                    ? 'is-active'
-                    : ''
-                }`}
-                aria-pressed={activeCategory === cat.key}
-              >
-                {cat.label}
-              </button>
-            ))}
         </div>
 
         <div className={`film-gallery__deck film-gallery__deck--${galleryLayout}`}>

@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './utilities/ScrollToTop';
 import useScrollReveal from './utilities/useScrollReveal';
-import FloatingButtons from './components/floating/FloatingButtons';
 
 // Route Pages
 import Home from './pages/Home';
@@ -22,6 +21,13 @@ function AppContent() {
   const location = useLocation();
   // Global scroll reveal observer across all four pages
   useScrollReveal();
+  const pageKey = {
+    '/': 'home',
+    '/about': 'about',
+    '/services': 'services',
+    '/our-work': 'portfolio',
+    '/gallery-contact': 'contact',
+  }[location.pathname] || 'home';
 
   return (
     <div className="flex flex-col min-h-screen bg-ivory text-charcoal overflow-x-clip selection:bg-crimson selection:text-white">
@@ -29,7 +35,7 @@ function AppContent() {
       <Navbar />
 
       {/* Dynamic Route Content */}
-      <main key={location.pathname} className="flex-grow page-route-enter">
+      <main key={location.pathname} className={`flex-grow page-route-enter page-route--${pageKey}`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -45,8 +51,6 @@ function AppContent() {
       {/* Persistent Brand Footer at the bottom of the page */}
       <Footer />
 
-      {/* Phase 7: Floating Action Buttons (WhatsApp, Back-to-Top, Plan Your Event) */}
-      <FloatingButtons />
     </div>
   );
 }

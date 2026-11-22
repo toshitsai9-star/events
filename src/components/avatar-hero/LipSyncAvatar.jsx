@@ -267,7 +267,7 @@ export default function LipSyncAvatar({
 
       {showAudioPrompt && !showEntryGate && soundState !== 'playing-with-sound' && (
         <aside
-          className="founder-audio-prompt absolute left-4 right-4 top-20 z-40 mx-auto sm:left-auto sm:right-8 sm:top-24 sm:mx-0"
+          className="founder-audio-prompt absolute bottom-5 left-4 right-4 z-40 mx-auto sm:bottom-8 sm:left-auto sm:right-8 sm:mx-0"
           role="dialog"
           aria-label="Listen to the founder's welcome"
         >
