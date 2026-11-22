@@ -26,7 +26,7 @@ export default function SpecialtiesSection() {
         'Wedding stage decoration',
         'Floral & venue decoration',
       ],
-      image: '/videos/optimized/wedding-poster-720.jpg',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80',
       tag: 'Signature Showcase',
     },
     {
@@ -42,7 +42,7 @@ export default function SpecialtiesSection() {
         'Award ceremonies',
         'Business gatherings',
       ],
-      image: '/videos/portfolio/film2_poster.jpg',
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80',
       tag: 'Professional Execution',
     },
     {
@@ -90,7 +90,7 @@ export default function SpecialtiesSection() {
         'Cultural performances',
         'Public celebrations',
       ],
-      image: '/videos/optimized/feast-poster-720.jpg',
+      image: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1000&q=80',
       tag: 'Heritage & Faith',
     },
     {
@@ -122,7 +122,7 @@ export default function SpecialtiesSection() {
         'Baby showers & cradle ceremonies',
         'Intimate engagement parties',
       ],
-      image: '/videos/optimized/housewarming-poster-720.jpg',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80',
       tag: 'Intimate & Bespoke',
     },
     {

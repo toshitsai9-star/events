@@ -19,7 +19,7 @@ export default function ServicesShowcase() {
       title: 'Weddings & Receptions',
       eyebrow: 'Bespoke Nuptials & Grand Galas',
       intro: 'From architectural floral mandaps and royal stage decor to seamless guest hospitality, we orchestrate wedding celebrations that reflect your heritage and personal love story.',
-      primaryImage: '/videos/optimized/wedding-poster-720.jpg',
+      primaryImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Wedding planning',
         'Reception arrangements',
@@ -55,7 +55,7 @@ export default function ServicesShowcase() {
       title: 'Corporate Events',
       eyebrow: 'Conferences & Brand Launches',
       intro: 'Engineering polished, technically flawless corporate environments that reinforce company stature, captivate stakeholders, and facilitate executive networking.',
-      primaryImage: '/videos/portfolio/film2_poster.jpg',
+      primaryImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Corporate conferences',
         'Business meetings',
@@ -92,7 +92,7 @@ export default function ServicesShowcase() {
       title: 'Cultural & Traditional Events',
       eyebrow: 'Heritage Festivities & Community',
       intro: 'Honoring sacred traditions, festive melas, and cultural gatherings with authentic thematic decor, traditional stage craft, and deep ritualistic respect.',
-      primaryImage: '/videos/optimized/feast-poster-720.jpg',
+      primaryImage: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Cultural festivals',
         'Traditional celebrations',
@@ -128,7 +128,7 @@ export default function ServicesShowcase() {
       title: 'Private Parties & Special Occasions',
       eyebrow: 'Intimate Soirées & Family Feasts',
       intro: 'Orchestrating exclusive family milestones in private residences and scenic estates, focusing on intimate warmth, bespoke dining, and subtle acoustic luxury.',
-      primaryImage: '/videos/optimized/housewarming-poster-720.jpg',
+      primaryImage: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
       services: [
         'Anniversary celebrations',
         'Baby showers',
@@ -227,7 +227,7 @@ export default function ServicesShowcase() {
                     <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[16/11]">
                       <img
                         src={cat.primaryImage}
-                        alt={`${cat.title} - Adi Reddy Events`}
+                        alt={`Representative event photography for ${cat.title}`}
                         className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                         loading="lazy"
                       />

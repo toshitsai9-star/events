@@ -67,8 +67,8 @@ export default function ServicesHero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[4/5]">
                 <img
-                  src="/videos/portfolio/film2_poster.jpg"
-                  alt="Real event production footage from Adi Reddy Events"
+                  src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80"
+                  alt="A live event stage prepared for a conference audience"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-105"
                   loading="eager"
                 />

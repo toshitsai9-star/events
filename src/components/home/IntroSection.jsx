@@ -23,8 +23,8 @@ export default function IntroSection() {
             <div className="relative">
               <div className="relative overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[3/4]">
                 <img
-                  src="/videos/optimized/feast-poster-720.jpg"
-                  alt="Real footage from a traditional Konaseema celebration"
+                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80"
+                  alt="A carefully arranged celebration table at a wedding reception"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />

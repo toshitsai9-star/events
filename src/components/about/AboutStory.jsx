@@ -38,8 +38,8 @@ export default function AboutStory() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative z-10 overflow-hidden bg-beige border border-gold/30 shadow-card aspect-[4/5]">
                 <img
-                  src="/videos/optimized/wedding-poster-720.jpg"
-                  alt="Real wedding celebration footage from Adi Reddy Events"
+                  src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=80"
+                  alt="Wedding ceremony and reception photography"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />
