@@ -1788,6 +1788,8 @@ canvas {
 .page-route--about {
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --gc-serif: var(--font-heading);
+  --gc-sans: var(--font-body);
 }
 .page-route--services {
   --font-heading: 'DM Serif Display', Georgia, serif;
