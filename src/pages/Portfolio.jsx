@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { PORTFOLIO_VIDEOS, VIDEO_CATEGORIES } from '../data/portfolioVideos';
 import AutoPlayReel from '../components/portfolio/AutoPlayReel';
-import { pauseAllReels } from '../utilities/reelPlayback';
+import { pauseAllReels, requestReelPlayback } from '../utilities/reelPlayback';
 
 /**
  * Event Films page
@@ -346,8 +346,9 @@ export default function Portfolio() {
                 }}
               >
                 {/* Video Thumbnail Viewport */}
-                <div 
+                <div
                   onClick={() => handleOpenVideo(video)}
+                  onMouseEnter={(event) => requestReelPlayback(event.currentTarget.querySelector('video'))}
                   className="film-card__media"
                 >
                   <AutoPlayReel

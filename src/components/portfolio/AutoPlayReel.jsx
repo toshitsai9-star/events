@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
-import { REEL_PAUSE_EVENT, REEL_PLAY_EVENT, requestReelPlayback } from '../../utilities/reelPlayback';
+import { REEL_PAUSE_EVENT, REEL_PLAY_EVENT } from '../../utilities/reelPlayback';
 
 export default function AutoPlayReel({ src, poster, title, className = '' }) {
   const videoRef = useRef(null);
@@ -11,9 +11,7 @@ export default function AutoPlayReel({ src, poster, title, className = '' }) {
     if (!video) return undefined;
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
-        requestReelPlayback(video);
-      } else if (entry.intersectionRatio < 0.15) {
+      if (entry.intersectionRatio < 0.15) {
         video.pause();
       }
     }, { threshold: [0, 0.15, 0.55] });
@@ -35,7 +33,6 @@ export default function AutoPlayReel({ src, poster, title, className = '' }) {
     };
   }, []);
 
-  const startPlayback = () => requestReelPlayback(videoRef.current);
   const toggleMute = (event) => {
     event.stopPropagation();
     const nextMuted = !isMuted;
@@ -44,7 +41,7 @@ export default function AutoPlayReel({ src, poster, title, className = '' }) {
   };
 
   return (
-    <div className={`relative ${className}`} onMouseEnter={startPlayback}>
+    <div className={`relative ${className}`}>
       <video
         ref={videoRef}
         src={src}
