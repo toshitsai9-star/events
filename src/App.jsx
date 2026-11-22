@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './utilities/ScrollToTop';
@@ -19,6 +19,7 @@ import GalleryContact from './pages/GalleryContact';
  * dynamic route pages, persistent footer, and floating action suite.
  */
 function AppContent() {
+  const location = useLocation();
   // Global scroll reveal observer across all four pages
   useScrollReveal();
 
@@ -28,7 +29,7 @@ function AppContent() {
       <Navbar />
 
       {/* Dynamic Route Content */}
-      <main className="flex-grow">
+      <main key={location.pathname} className="flex-grow page-route-enter">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

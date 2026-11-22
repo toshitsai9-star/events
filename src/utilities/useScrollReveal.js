@@ -24,15 +24,19 @@ export default function useScrollReveal() {
       }
     });
 
-    document.querySelectorAll('main section .grid > .group, main section [data-motion="reveal"], footer').forEach((el) => {
-      if (!el.classList.contains('reveal-init')) el.classList.add('motion-reveal');
+    document.querySelectorAll('main section .grid > *, main section [data-motion="reveal"], footer').forEach((el, index) => {
+      if (el.matches('.group, article, a[href], [data-motion="reveal"]')) {
+        el.classList.add('site-card-motion');
+      }
+      if (!el.classList.contains('reveal-init')) {
+        el.classList.add('motion-reveal');
+        el.dataset.motionDirection = index % 3 === 0 ? 'up' : index % 2 === 0 ? 'left' : 'right';
+      }
     });
 
     document.querySelectorAll('main section .grid').forEach((grid) => {
       Array.from(grid.children).forEach((card, index) => {
-        if (card.classList.contains('motion-reveal') || card.classList.contains('reveal-init')) {
-          card.style.setProperty('--motion-delay', `${Math.min(index, 4) * 55}ms`);
-        }
+        card.style.setProperty('--motion-delay', `${Math.min(index, 5) * 75}ms`);
       });
     });
 
