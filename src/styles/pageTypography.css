@@ -1,0 +1,42 @@
+/* Each route gets a distinct display and reading font pairing. */
+main.page-route--home {
+  --page-display-font: 'Bodoni Moda', Georgia, serif;
+  --page-reading-font: 'DM Sans', Arial, sans-serif;
+  font-family: var(--page-reading-font);
+}
+main.page-route--about {
+  --page-display-font: 'Playfair Display', Georgia, serif;
+  --page-reading-font: 'Manrope', Arial, sans-serif;
+  font-family: var(--page-reading-font);
+}
+main.page-route--services {
+  --page-display-font: 'DM Serif Display', Georgia, serif;
+  --page-reading-font: 'Plus Jakarta Sans', Arial, sans-serif;
+  font-family: var(--page-reading-font);
+}
+main.page-route--portfolio {
+  --page-display-font: 'Cormorant Garamond', Georgia, serif;
+  --page-reading-font: 'Source Sans 3', Arial, sans-serif;
+  font-family: var(--page-reading-font);
+}
+main.page-route--contact {
+  --page-display-font: 'Lora', Georgia, serif;
+  --page-reading-font: 'Outfit', Arial, sans-serif;
+  font-family: var(--page-reading-font);
+}
+
+main.page-route--home :is(.font-sans, p, li, button, input, textarea, select, label, a),
+main.page-route--about :is(.font-sans, p, li, button, input, textarea, select, label, a),
+main.page-route--services :is(.font-sans, p, li, button, input, textarea, select, label, a),
+main.page-route--portfolio :is(.font-sans, p, li, button, input, textarea, select, label, a),
+main.page-route--contact :is(.font-sans, p, li, button, input, textarea, select, label, a) {
+  font-family: var(--page-reading-font);
+}
+
+main.page-route--home :is(h1, h2, h3, h4, h5, h6, .font-serif),
+main.page-route--about :is(h1, h2, h3, h4, h5, h6, .font-serif),
+main.page-route--services :is(h1, h2, h3, h4, h5, h6, .font-serif),
+main.page-route--portfolio :is(h1, h2, h3, h4, h5, h6, .font-serif),
+main.page-route--contact :is(h1, h2, h3, h4, h5, h6, .font-serif) {
+  font-family: var(--page-display-font);
+}

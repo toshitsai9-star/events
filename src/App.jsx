@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/pageTypography.css';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
