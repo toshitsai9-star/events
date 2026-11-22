@@ -133,7 +133,8 @@ export default function LipSyncAvatar({
     const unlockOnFirstGesture = () => {
       window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
       window.removeEventListener('keydown', unlockOnFirstGesture, true);
-      unlockWithSound(false);
+      // Start from the opening line so the visitor hears the complete introduction.
+      unlockWithSound(true);
     };
 
     window.addEventListener('pointerdown', unlockOnFirstGesture, true);
